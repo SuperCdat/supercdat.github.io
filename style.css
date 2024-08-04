@@ -1,0 +1,82 @@
+body {
+    padding: 100px;
+    height: 1020px;
+    background-image: url("assets/unnamed.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.centerpart {
+    height: 1200px;
+    width: calc(100% - 40px);
+    border-radius: 5px;
+    left: 50%;
+    transform: translate(-50%, -90px);
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+}
+
+#cdsuperat_headname {
+    font-size: xx-large;
+    top: 10px;
+    left: calc(50% + 30px);
+    transform: translate(-50%, -50%);
+    position: absolute
+}
+
+#topid_centerpart {
+    /*height: 400px;*/
+    width: 95%;
+    border-radius: 5px;
+    top: 24%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#centerid_centerpart {
+    /* height: 400px; */
+    width: 95%;
+    border-radius: 5px;
+    top: 58.28282828%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    display: "";
+}
+
+#bottomid_centerpart {
+    height: 264px;
+    width: 95%;
+    border-radius: 5px;
+    top: 86.85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    display: "";
+}
+
+#cdsuperatlogo {
+    width: 90px;
+
+}
+
+#cdlogolink {
+    top: 35px;
+    left: calc(50% - 80px);
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+#aprojectofsupercdat {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
