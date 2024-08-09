@@ -1,0 +1,221 @@
+@font-face {
+    font-family: "poppins_font";
+    src: url("../assets/Poppins-ExtraLight.ttf");
+}
+@font-face {
+    font-family: "thebold_font";
+    src: url("../assets/TheBoldFont.ttf");
+}
+@font-face {
+    font-family: "retrokiacaps_font";
+    src: url("../assets/RetrokiaCaps.ttf");
+}
+
+body {
+    height: 1200px;
+    background-image: url("../assets/unnamed2.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    user-select: none;
+}
+
+@keyframes div1_hide {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+@keyframes div1_show {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+#div1 {
+    height: 1197px;
+    width: calc(100% - 20px);
+    border-radius: 4px;
+    top: 609px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(25px);
+}
+
+#anchor_contact_github {
+    bottom: 0px;
+    left: calc(50% - 100px);
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+#anchor_contact_youtube {
+    bottom: 4px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+#contact_youtube {
+    height: 46px;
+    width: 46px;
+    border-radius: 125px;
+    background-image: url("../assets/yt_logo_rgb_dark.png");
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+#anchor_contact_itch {
+    bottom: 4px;
+    left: calc(50% + 100px);
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.contact_ {
+    transition: transform .2s;
+    scale: 100%;
+}
+.contact_:hover {
+    transform: scale(110%);
+}
+
+#supercdat {
+    font-family: "poppins_font";
+    font-size: x-large;
+    top: 10px;
+    left: 67px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: color 0.5s;
+    color: white;
+}
+#supercdat:hover {
+    transition: color 0.5s;
+    color: rgb(0, 0, 0);
+}
+#supercdat:active {
+    color: rgb(26, 26, 26);
+}
+
+#Menu_Bigdiv {
+    border-radius: 4px;
+    top: 34px;
+    right: -7px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+#Menu_ {
+    height: 40px;
+    width: 40px;
+    transition: transform .2s;
+}
+#Menu_:active {
+    transform: scale(80%);
+}
+
+@keyframes FadeIn_List_Bigdiv {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes FadeOut_List_Bigdiv {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+#List_Bigdiv {
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    top: 0px;
+    left: 100%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+}
+#List_Filteroc {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    z-index: 101;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+}
+@keyframes FadeIn_List_Mainpart {
+    0% {scale: 40%;}
+    100% {scale: 100%;}
+}
+@keyframes FadeOut_List_Mainpart {
+    0% {scale: 100%;}
+    100% {scale: 40%;}
+}
+@keyframes FadeIn_List_Bigger_Mainpart {
+    0% {top: 160px; right: -183px;}
+    100% {top: 310px; right: -93px;}
+}
+@keyframes FadeOut_List_Bigger_Mainpart {
+    0% {top: 310px; right: -93px;}
+    100% {top: 160px; right: -183px;}
+}
+#List_Bigger_Mainpart {
+    top: 310px;
+    right: -93px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    z-index: 110;
+}
+#List_Mainpart {
+    scale: 100%;
+    height: 500px;
+    width: 300px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Pages_ {
+    height: 87px;
+    width: 200px;
+    color: white;
+    font-family: "poppins_font";
+    background-color: rgba(0, 0, 0, 0.3);
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 13px;
+    border-radius: 4px;
+    transition: all 0.5s;
+    font-size: 40px;
+    display: inline-block;
+
+}
+.Pages_::after {
+    content: ">>";
+    opacity: 0;
+    right: 0px;
+    transition: 0.5s;
+    position: absolute;
+}
+.Pages_:hover {
+    padding-left: 0px;
+    padding-right: 50px;
+}
+.Pages_:hover::after {
+    opacity: 1;
+    right: 15px;
+}
+.Pages_:active {
+    padding-left: 10px;
+    padding-right: 40px;
+}
+.Pages_:active::after {
+    opacity: 0.5;
+    right: 5px;
+}
+
+#Pages_supercdat {
+    top: 75px;
+}
+#Pages_about {
+    top: 200px;
+}
