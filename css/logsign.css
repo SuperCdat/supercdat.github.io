@@ -1,0 +1,545 @@
+@font-face {
+    font-family: "poppins_font";
+    src: url("../assets/Poppins-ExtraLight.ttf");
+}
+@font-face {
+    font-family: "thebold_font";
+    src: url("../assets/TheBoldFont.ttf");
+}
+@font-face {
+    font-family: "retrokiacaps_font";
+    src: url("../assets/RetrokiaCaps.ttf");
+}
+
+.transition-fade {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+html.is-animating .transition-fade {
+    opacity: 0;
+}
+html.is-rendering body {
+    height: 100%;
+    overflow: hidden;
+}
+html.is-rendering #div1_Sign {
+    display: none;
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    background-image: url("../assets/unnamed2.jpg");
+    /* background: #060713; */
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    user-select: none;
+    transition: 0.5s;
+}
+
+#tohome {
+    font-family: "poppins_font";
+    font-size: xx-large;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: white;
+    transition: 1s;
+}
+#tohome::before {
+    content: "<< ";
+    top: 50%;
+    left: calc(50% - 80px);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 1s;
+}
+#tohome:hover {
+    left: calc(50% + 10px);
+    transition: 1s;
+}
+#tohome:hover::before {
+    left: calc(50% - 70px);
+    opacity: 1;
+    transition: 1s;
+}
+#tohome:active {
+    left: 50%;
+    transition: 1s;
+}
+#tohome:active::before {
+    left: calc(50% - 75px);
+    opacity: 1;
+    transition: 1s;
+}
+
+#div0 {
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+#div1 {
+    transition: 0.5s;
+    width: 80%;
+    height: 400px;
+    max-height: 400px;
+    max-width: 400px;
+    border-radius: 4px;
+    top: 50%;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, -50%);
+    background: rgba(6, 7, 19, 0.5);
+    transition: 0.5s;
+    backdrop-filter: blur(25px);
+    /* display: none; */
+}
+
+@keyframes LogtoSign_log {
+    0% {left: 50%; opacity: 1;}
+    100% {left: -50%; opacity: 0;}
+}
+@keyframes LogtoSign_sign {
+    0% {left: 150%; opacity: 0;}
+    100% {left: 50%; opacity: 1;}
+}
+@keyframes SigntoLog_log {
+    0% {left: -50%; opacity: 0;}
+    100% {left: 50%; opacity: 1;}
+}
+@keyframes SigntoLog_sign {
+    0% {left: 50%; opacity: 1;}
+    100% {left: 150%; opacity: 0;}
+}
+
+#login {
+    top: 20px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: "poppins_font";
+    text-wrap: nowrap;
+}
+
+.textbox {
+    height: 30px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: 2px solid white;
+    color: white;
+    outline: none;
+    font-size: 18px;
+    font-family: "poppins_font";
+    transition: 0.2s;
+}
+.textbox::placeholder {
+    transition: 0.2s;
+    color: white;
+    font-size: 15px;
+}
+.textbox:focus {
+    transition: 0.2s;
+    font-size: 20px;
+}
+.textbox:focus::placeholder {
+    font-size: 16px;
+}
+
+#Signname {
+    top: 30%;
+    width: calc(100% - 120px);
+    /* width: 70%; */
+    left: 45%;
+    text-align: left;
+
+}
+#Signpassword {
+    top: 50%;
+    left: 45%;
+    width: calc(100% - 120px);
+    /* width: 70%; */
+
+    text-align: left;
+
+}
+#id_card {
+    scale: 30%;
+    top: 20%;
+    right: -30px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+#password {
+    scale: 30%;
+    top: 40.3%;
+    right: -30px;
+
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+#issue_text_log {
+    color: red;
+    display: none;
+    font-family: "poppins_font";
+    top: 53%;
+    left: 50%;
+    text-align: left;
+    text-wrap: nowrap;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+#continue_btn {
+    height: 50px;
+    width: 50%;
+    border-radius: 50px;
+    border: transparent;
+    background-color: #333;
+    top: 73%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-family: "poppins_font";
+    color: white;
+}
+#continue_btn::before {
+    content: "";
+    background: linear-gradient(
+      45deg,
+      #FF0000, #FF7300, #FFFB00, #48FF00,
+      #00FFD5, #002BFF, #FF00C8, #FF0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height:  calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 50px;
+    opacity: 1;
+}
+#continue_btn::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(6, 7, 19);
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+}
+@keyframes glowing {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
+}
+
+#continue_btn:active:after {
+background: transparent;
+}
+
+#continue_btn:active {
+color: #000;
+font-weight: bold;
+}
+
+#donthaveacc {
+    top: 88%;
+    left: 50%;
+    font-size: 15px;
+    text-align: center;
+    text-wrap: nowrap;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: #00b0b6;
+    cursor: pointer;
+    font-family: "poppins_font"
+}
+
+#div1_Sign {
+    display: none;
+    transition: 0.5s;
+    width: 80%;
+    height: 500px;
+    max-height: 600px;
+    max-width: 400px;
+    border-radius: 4px;
+    top: 50%;
+    left: 150%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    background: rgba(6, 7, 19, 0.5);
+    transition: 0.5s;
+    backdrop-filter: blur(25px);
+}
+
+#signin {
+    top: 20px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: "poppins_font";
+}
+
+#Displayname_Sign {
+    top: 25%;
+    width: 80%;
+    left: 50%;
+    text-align: center;
+}
+
+#Signname_Sign {
+    top: 40%;
+    width: 80%;
+    left: 50%;
+    text-align: center;
+}
+#Signpassword_Sign {
+    top: 55%;
+    width: 35%;
+    left: 27.5%;
+    text-align: center;
+}
+#Signpassword_Again_Sign {
+    top: 55%;
+    width: 35%;
+    left: 72%;
+    text-align: center;
+}
+#issue_text {
+    color: red;
+    display: none;
+    font-family: "poppins_font";
+    top: 58%;
+    left: 50%;
+    text-align: left;
+    text-wrap: nowrap;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+#continue_btn_Sign {
+    height: 50px;
+    width: 50%;
+    border-radius: 50px;
+    border: transparent;
+    background-color: #333;
+    top: 75%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-family: "poppins_font";
+    color: white;
+}
+#continue_btn_Sign::before {
+    content: "";
+    background: linear-gradient(
+      45deg,
+      #FF0000, #FF7300, #FFFB00, #48FF00,
+      #00FFD5, #002BFF, #FF00C8, #FF0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height:  calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 50px;
+    opacity: 1;
+}
+#continue_btn_Sign::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(6, 7, 19);
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+}
+@keyframes glowing {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
+}
+
+#continue_btn_Sign:active:after {
+background: transparent;
+}
+
+#continue_btn_Sign:active {
+color: #000;
+font-weight: bold;
+}
+#Alreadyhaveacc {
+    bottom: -25px;
+    left: 50%;
+    font-size: 15px;
+    text-align: center;
+    text-wrap: nowrap;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: #00b0b6;
+    cursor: pointer;
+    font-family: "poppins_font"
+}
+/* #Menu_Bigdiv {
+    border-radius: 4px;
+    top: 34px;
+    right: -7px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+#Menu_ {
+    height: 40px;
+    width: 40px;
+    transition: transform .2s;
+}
+#Menu_:active {
+    transform: scale(80%);
+}
+
+@keyframes FadeIn_List_Bigdiv {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes FadeOut_List_Bigdiv {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+#List_Bigdiv {
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    top: 0px;
+    right: -500%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+}
+#List_Filteroc {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    z-index: 101;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+}
+@keyframes FadeIn_List_Mainpart {
+    0% {scale: 40%;}
+    100% {scale: 100%;}
+}
+@keyframes FadeOut_List_Mainpart {
+    0% {scale: 100%;}
+    100% {scale: 40%;}
+}
+@keyframes FadeIn_List_Bigger_Mainpart {
+    0% {top: 135px; right: -138px;}
+    100% {top: 255px; right: -67px;}
+}
+@keyframes FadeOut_List_Bigger_Mainpart {
+    0% {top: 255px; right: -67px;}
+    100% {top: 135px; right: -138px;}
+}
+#List_Bigger_Mainpart {
+    top: 255px;
+    right: -67px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    z-index: 110;
+}
+#List_Mainpart {
+    height: 400px;
+    width: 240px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Pages_ {
+    height: 69.6px;
+    width: 166.66666666666666px;
+    color: white;
+    font-family: "poppins_font";
+    background-color: rgba(0, 0, 0, 0.3);
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10.4px;
+    border-radius: 4px;
+    transition: all 0.5s;
+    font-size: 40px;
+    display: inline-block;
+
+}
+.Pages_::after {
+    content: ">>";
+    opacity: 0;
+    right: 0px;
+    transition: 0.5s;
+    position: absolute;
+}
+.Pages_:hover {
+    padding-left: 0px;
+    padding-right: 50px;
+}
+.Pages_:hover::after {
+    opacity: 1;
+    right: 15px;
+}
+.Pages_:active {
+    padding-left: 10px;
+    padding-right: 40px;
+}
+.Pages_:active::after {
+    opacity: 0.5;
+    right: 5px;
+}
+
+#Pages_supercdat {
+    top: 52px;
+}
+#Pages_projects {
+    top: 143.5px;
+}
+#Pages_about {
+    top: 235px;
+}
+#Pages_discussion {
+    top: 326.5px;
+}
+#Pages_projects {
+    top: 75px;
+}
+#Pages_about {
+    top: 200px;
+} */
