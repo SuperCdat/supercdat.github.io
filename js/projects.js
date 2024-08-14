@@ -1,14 +1,15 @@
 function ready() {
     let div1 = document.getElementById("div1");
     div1.style.display = "";
-    div1.style.animation = "div1_show 0.5s";
+    // div1.style.animation = "div1_show 0.5s";
+    div1.style.backdropFilter = "blur(25px)";
 
     var List_Bigdiv = document.getElementById("List_Bigdiv");
     List_Bigdiv.style.transform = "none";
     List_Bigdiv.style.display = "none";
 
     let Menu_ = document.getElementById("Menu_");
-    Menu_.style.backgroundImage = "url(../assets/Menu_.png)";
+    Menu_.style.backgroundImage = "url(assets/Menu_.png)";
     Menu_img = "Menu_";
 }
 
@@ -20,7 +21,7 @@ function Menuopen_close() {
     if (Menu_img == "Menu_" ) {
         Menu_img = "Queue_";
         List_Bigdiv.style.display = "";
-        Menu_.style.backgroundImage = "url(../assets/Close_.png)";
+        Menu_.style.backgroundImage = "url(assets/Close_.png)";
         List_Bigdiv.style.animation = "FadeIn_List_Bigdiv 0.3s";
         List_Mainpart.style.animation = "FadeIn_List_Mainpart 0.3s";
         List_Bigger_Mainpart.style.animation = "FadeIn_List_Bigger_Mainpart 0.3s";
@@ -30,7 +31,7 @@ function Menuopen_close() {
     }
     else if (Menu_img == "Close_" ) {
         Menu_img = "Queue_";
-        Menu_.style.backgroundImage = "url(../assets/Menu_.png)";
+        Menu_.style.backgroundImage = "url(assets/Menu_.png)";
         List_Bigdiv.style.animation = "FadeOut_List_Bigdiv 0.3s";
         List_Mainpart.style.animation = "FadeOut_List_Mainpart 0.3s";
         List_Bigger_Mainpart.style.animation = "FadeOut_List_Bigger_Mainpart 0.3s";
