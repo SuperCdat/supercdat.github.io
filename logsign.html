@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SuperCdat .logsign</title>
+    <link href='css/logsign.css' rel='stylesheet'>
+    <script type="text/javascript" src="js/logsign.js"></script>
+    <link rel="shortcut icon" href="assets/cdsuperat-wuaze.png" type="image/x-icon">
+</head>
+<body onload="readygo()" id="Body">
+    <main id="swup" class="transition-fade">
+        <link href='css/logsign.css' rel='stylesheet'>
+
+
+        <div id="div0">
+            <div class="div1" id="div1">
+                <h1 id="login">.Đăng Nhập</h1>
+                <input class="textbox" autocomplete="off" id="Signname" placeholder="Tên Đăng Nhập" type="text"><img id="id_card" src="assets/id_card_32dp_E8EAED_FILL0_wght400_GRAD0_opsz40.png">
+                <input class="textbox" autocomplete="off" id="Signpassword" placeholder="Mật Khẩu" type="text"><img id="password" src="assets/password_32dp_E8EAED_FILL0_wght400_GRAD0_opsz40 (2).png">
+                <h5 id="issue_text_log">dwadaw</h5>
+                <button id="continue_btn" onclick="LogIn()">Tiếp tục</button>
+                <h5 id="donthaveacc" onclick="LogtoSign_log(), LogtoSign_sign()">Tạo tài khoản dành cho bạn →</h5>
+
+            </div>
+            <div class="div1" id="div1_Sign">
+                <h1 id="signin">.Đăng Ký</h1>
+                <input class="textbox" autocomplete="off" id="Displayname_Sign" placeholder="Tên Hiển Thị" type="text">
+                <input class="textbox" autocomplete="off" id="Signname_Sign" placeholder="Tên Đăng Nhập" type="text">
+                <input class="textbox" autocomplete="off" id="Signpassword_Sign" placeholder="Mật Khẩu" type="text">
+                <input class="textbox" autocomplete="off" id="Signpassword_Again_Sign" placeholder="Xác Nhận Mật Khẩu" type="text">
+                <h5 id="issue_text">Mật khẩu không trùng khớp</h5>
+                <button id="continue_btn_Sign" onclick="AddData()">Tiếp tục</button>
+                <h5 id="Alreadyhaveacc" onclick="SigntoLog_log(), SigntoLog_sign()">← Đã có tài khoản? Đăng nhập</h5>
+            </div>
+            <a id="gotodscs" href="discussion.html"></a>
+        </div>
+
+
+    </main>
+    
+    <a href="index.html"><div id="tohome">.home</div></a>
+
+    <script type="text/javascript" src="js/logsign.js"></script>
+
+    <!-- <div id="List_Bigdiv">
+        <div onclick="Menuopen_close()" id="List_Filteroc"></div>
+        <div id="List_Bigger_Mainpart">
+            <div id="List_Mainpart">
+                <a href="index.html">
+                    <div onclick="Menuopen_close()" class="Pages_" id="Pages_supercdat"><span>.home</span></div>
+                </a>
+                <a href="projects.html">
+                <div onclick="Menuopen_close()" class="Pages_" id="Pages_projects"><span>.projects</span></div>
+                </a>
+                <a href="about.html">
+                    <div onclick="Menuopen_close()" class="Pages_" id="Pages_about"><span>.about</span></div>
+                </a>
+                <a href="logsign.html">
+                    <div onclick="Menuopen_close()" class="Pages_" id="Pages_discussion"><span>.dscs</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="Menu_Bigdiv">
+        <div onclick="Menuopen_close()" id="Menu_"></div>
+    </div>
+    <script defer type="text/javascript" src="js/logsign.js"></script>
+    <script defer type="text/javascript" src="js/index.js"></script>
+
+    <script src="https://unpkg.com/swup@4"></script>
+    <script>
+        const swup = new Swup();
+    </script> -->
+</body>
+</html>
