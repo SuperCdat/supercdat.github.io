@@ -11,13 +11,26 @@
     src: url("../assets/RetrokiaCaps.ttf");
 }
 
+html {
+    scrollbar-width: none;
+    scrollbar-color: rgb(56, 58, 85) rgb(6 7 19);
+    transition: 0.5s;
+}
+
+
+
+
 .transition-fade {
     opacity: 1;
+    left: 50%;
     transition: 0.5s;
 }
 
 html.is-animating .transition-fade {
     opacity: 0;
+    transition: 0.5s;
+
+
 }
 html.is-rendering #div1 {
     backdrop-filter: blur(0px);
@@ -35,13 +48,19 @@ html.is-animating body {
 } */
 
 body {
-    height: 1200px;
-    background-image: url("../assets/unnamed2.jpg");
+    height: auto;
+    min-height: 10285px;
+    /* max-height: 1300px; */
+    /* background-image: url("../assets/unnamed2.jpg"); */
     /* background: #060713; */
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
     user-select: none;
+    overflow-x: hidden;
+    text-wrap: nowrap;
+    /* padding-bottom: 10px; */
+    
 }
 
 /* @keyframes div1_hide {
@@ -53,58 +72,110 @@ body {
     100% {opacity: 1;}
 } */
 #div1 {
-    height: 1197px;
-    width: calc(100% - 20px);
-    border-radius: 4px;
-    top: 609px;
+    height: 10197px;
+    /* height: calc(100% - 20px); */
+   
+    /* width: calc(100% - 20px); */
+
+    width: 100vw;
+
+    /* border-radius: 4px; */
+
+    top: 5109px;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
     background: rgba(6, 7, 19, 0.5);
     transition: 0.5s;
-    backdrop-filter: blur(25px);
+
+    /* backdrop-filter: blur(15px); */
 }
 
 #div2 {
     height: auto;
     width: 80%;
-    top: 130px;
     border-radius: 4px;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
+    margin: 40px auto;
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
     text-align: center;
-    font-family: "poppins_font";
-    padding-top: 55px;
-    padding-left: 5px;
-    padding-right: 5px;
-    font-weight: 700;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 350;
+    padding: 0 5px 35px 5px;
+    text-wrap: wrap;
 }
 #Heading_supercdat {
     font-family: "retrokiacaps_font";
-    font-size: xxx-large;
-    top: -5px;
-    left: 50%;
-    text-align: center;
-    position: absolute;
-    transform: translate(-50%, -50%);
+    font-size: max(6vw, 50px);
+    margin: 0 auto;
+    word-wrap: break-word;
+
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px rgb(0, 238, 255),
+        0 0 82px rgb(0, 238, 255),
+        0 0 92px rgb(0, 238, 255);
+        /* 0 0 102px rgb(0, 238, 255); */
 }
 
-#anchor_contact_github {
+#fotter {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    padding: 15px;
+    gap: 50px;
+    /* border-radius: 0 0 4px 4px; */
+    height: auto;
+    /* width: calc(100% - 50px); */
+
+    width: calc(100% - 30px);
+
+
+    background: rgba(6, 7, 19, 0.5);
+
+    margin: 10212px auto;
+    /* margin-left: auto; */
+    /* bottom: -650px;
+    left: 50%; */
+    /* position: absolute; */
+    /* transform: translate(-50%, -50%); */
+
+}
+
+#div12 {
+    height: 1px;
+    /* height: calc(100% - 20px); */
+   
+    /* width: calc(100% - 20px); */
+
+    /* border-radius: 4px; */
+
+    width: 100%;
+
+    top: 0;
+    left: calc(50% - 1px);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    transition: 0.5s;
+    /* backdrop-filter: blur(15px); */
+}
+
+/* #anchor_contact_github {
     bottom: 0px;
-    left: max(25%, calc(50% - 100px));
+    left: 100px;
     position: absolute;
     transform: translate(-50%, -50%);
 }
 
 #anchor_contact_youtube {
     bottom: 4px;
-    left: 50%;
+    left: 200px;
     position: absolute;
     transform: translate(-50%, -50%);
-}
+} */
 #contact_youtube {
     height: 46px;
     width: 46px;
@@ -114,11 +185,43 @@ body {
     background-position: 50%;
 }
 
-#anchor_contact_itch {
+/* #anchor_contact_itch {
     bottom: 4px;
-    left: min(75%, calc(50% + 100px));
+    left: 300px;
     position: absolute;
     transform: translate(-50%, -50%);
+}
+
+#anchor_contact_xbox {
+    bottom: 4px;
+    left: 400px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+} */
+#contact_xbox {
+    height: 46px;
+    width: 46px;
+    border-radius: 125px;
+    background-image: url("../assets/Xbox_one_logo.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+/* #anchor_contact_roblox {
+    bottom: 4px;
+    left: 500px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+} */
+#contact_roblox {
+    height: 46px;
+    width: 46px;
+    border-radius: 125px;
+    background-image: url("../assets/Roblox.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
 }
 
 .contact_ {
@@ -130,22 +233,57 @@ body {
 }
 
 #supercdat {
-    font-family: "poppins_font";
+    font-family: "Josefin Sans", sans-serif;
     font-size: x-large;
-    top: 10px;
+    font-weight: 700;
+    top: 15px;
     left: 80px;
-    position: absolute;
+    position: fixed;
     transform: translate(-50%, -50%);
     transition: 0.5s;
     color: white;
+
+    /* background: linear-gradient(
+        135deg,
+    white, rgb(6 7 19),
+    ); */
+    background: rgb(255 255 255);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 600%;
+
 }
-#supercdat:hover {
-    transition: color 0.5s;
-    color: rgb(0, 0, 0);
+#supercdat::before {
+    content: ".supercdat";
+    z-index: -1;
+    top: 14px;
+    left: 61px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(
+        135deg,
+        #FF0000, #FF7300, #FFFB00, #48FF00,
+        #00FFD5, #002BFF, #FF00C8, #FF0000
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: blur(2px);
+    animation: glowing 30s linear infinite;
+    background-size: 600%;
+
+
 }
-#supercdat:active {
-    color: rgb(26, 26, 26);
+@keyframes glowing {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
 }
+/* @keyframes supercdatfade {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
+
+} */
 
 #Menu_Bigdiv {
     border-radius: 4px;
@@ -218,7 +356,8 @@ body {
 #List_Mainpart {
     height: 400px;
     width: 240px;
-    border-radius: 4px;
+    max-width: 240px;
+    border-radius: 4px 4px 0 0;
     background-color: rgba(0, 0, 0, 0.5);
 }
 #Del_Cache {
@@ -228,27 +367,78 @@ body {
     padding-top: 7px;
     height: 33px;
     width: 240px;
-    border-radius: 4px;
+    /* border-radius: 4px; */
     background-color: rgba(0, 0, 0, 0.5);
-    font-family: "poppins_font";
+    font-family: "Josefin Sans", sans-serif;
     color: white;
-    bottom: -62px;
+    bottom: -63px;
     left: 50%;
     position: fixed;
     transform: translate(-50%, -50%);
 }
-.material-symbols-outlined {
-    bottom: -3px;
-    left: 52px;
+#del_symbol {
+    bottom: -4px;
+    left: 60px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+}
+#Del_Cache p {
+    top: 8px;
+    left: 124px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+
+}
+#del_success_symbol {
+    transition: 0.2s;
+    opacity: 0;
+    bottom: -4px;
+    right: 27px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+}
+
+.a_projconfig {
+    text-decoration: none;
+    bottom: -106px;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+}
+#Proj_Config {
+    cursor: pointer;
+    text-align: center;
+    padding-top: 7px;
+    height: 33px;
+    width: 240px;
+    border-radius: 0 0 4px 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 375;
+
+    color: white;
+
+}
+#open_in_new {
+    bottom: -4px;
+    left: 180px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+}
+#Proj_Config p {
+    top: 4px;
+    left: 43%;
     position: fixed;
     transform: translate(-50%, -50%);
 }
 
 .Pages_ {
-    height: 69.6px;
-    width: 166.66666666666666px;
+    height: 59.6px;
+    width: calc(100% - 75px);
     color: white;
-    font-family: "poppins_font";
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 300;
     background-color: rgba(0, 0, 0, 0.3);
     left: 50%;
     position: fixed;
@@ -256,7 +446,7 @@ body {
     text-align: center;
     padding-left: 25px;
     padding-right: 25px;
-    padding-top: 10.4px;
+    padding-top: 20.4px;
     border-radius: 4px;
     transition: all 0.5s;
     font-size: 40px;
@@ -269,6 +459,8 @@ body {
     right: 0px;
     transition: 0.5s;
     position: absolute;
+    font-family: "poppins_font";
+    font-size: 30px;
 }
 .Pages_:hover {
     padding-left: 0px;
@@ -319,8 +511,8 @@ body {
     -ms-user-select: none;
     user-select: none;
     color: white;
-    font-family: "poppins_font";
-    bottom: -16.5px;
+    font-family: "Josefin Sans", sans-serif;
+    bottom: -13.5px;
     left: 50%;
     position: fixed;
     text-wrap: nowrap;
@@ -338,8 +530,9 @@ body {
   
   /* Create a custom checkbox */
   .checkmark {
+    transition: 0.5s;
     position: absolute;
-    top: 5px;
+    top: 1px;
     left: 8px;
     height: 15px;
     width: 15px;
