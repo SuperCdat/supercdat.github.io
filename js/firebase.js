@@ -25,6 +25,8 @@ window.AddData = () => {
         let Signname_Sign = document.getElementById("Signname_Sign");
         let Signpassword_Sign = document.getElementById("Signpassword_Sign");
         let Signpassword_Again_Sign = document.getElementById("Signpassword_Again_Sign");
+        let remember_me_Sign = document.getElementById("remember_me_Sign");
+
     }
 
     const dbRef = ref(db);
@@ -55,12 +57,27 @@ window.AddData = () => {
 
                 let issue_text = document.getElementById("issue_text");
                 issue_text.style.display = "none";
-                localStorage.Signname = Signname_Sign.value;
-                localStorage.Password = Signpassword_Sign.value;
+
+                if (remember_me_Sign.checked) {
+                    localStorage.Signname = Signname_Sign.value;
+                    localStorage.Password = Signpassword_Sign.value;
+                }
+
+                let Platform = navigator.userAgent;
+                const newDate = new Date();
+                // let CurrentDate = (newDate.getDate() + " - " + (newDate.getMonth() + 1) + " - " + newDate.getFullYear());
+
+                localStorage.logname = Signname_Sign.value;
+                localStorage.disname = Displayname_Sign.value;
+
+                let CurrentDate = (newDate.getDate() + " - " + (newDate.getMonth() + 1) + " - " + newDate.getFullYear() + " | " + newDate.getHours() + ":" + newDate.getMinutes() + ":" + newDate.getSeconds());
+
                 set(ref(db, "Datas/Users/" + Signname_Sign.value), {
                     DisplayName : Displayname_Sign.value,
                     SignName : Signname_Sign.value,
                     Password : Signpassword_Sign.value,
+                    Platform : Platform,
+                    DateCreated : CurrentDate,
                 }).then(() => {
                     window.alert("Tạo tài khoản thành công!");
                     document.getElementById("gotodscs").click();
@@ -81,10 +98,12 @@ window.AddData = () => {
 
 }
 
+
 window.LogIn = () => {
     window.onload=function(){
         let Signname = document.getElementById("Signname");
         let Signpassword = document.getElementById("Signpassword");
+        let remember_me = document.getElementById("remember_me");
 
     }
 
@@ -100,8 +119,17 @@ window.LogIn = () => {
             let issue_text_log = document.getElementById("issue_text_log");
             issue_text_log.style.display = "none";
             document.getElementById("gotodscs").click();
-            localStorage.Signname = Signname.value;
-            localStorage.Password = Signpassword.value;
+
+            localStorage.logname = Signname.value;
+            localStorage.disname = snapshot.val().DisplayName;
+
+
+
+            if (remember_me.checked) {
+                localStorage.Signname = Signname.value;
+                localStorage.Password = Signpassword.value;
+            }
+
         }
     });
 }
@@ -109,5 +137,18 @@ window.LogIn = () => {
 window.Del_Sign_Cache = () => {
     localStorage.Signname = "";
     localStorage.Password = "";
+    localStorage.is_autolog = false;
+    localStorage.theme = "Dark";
+    localStorage.removeAnim = false;
+    localStorage.removeBlur = false;
+    localStorage.enableScrollbar = false;
+    localStorage.blurLevel = "50";
+    localStorage.deleteBackground = false;
+
+    document.getElementById("del_success_symbol").style.opacity = 1;
+    setTimeout(function() {
+        document.getElementById("del_success_symbol").style.opacity = 0;
+
+    }, 1000);
 
 }
