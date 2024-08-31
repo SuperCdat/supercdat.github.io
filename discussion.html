@@ -174,12 +174,20 @@
         messageElement.setAttribute("id", "mes-" + snapshot.key);
 
         if (user === data.uid) {
+            messageElement.style.backgroundColor = localStorage.your_boxcolor;
+
             messageElement.classList.add('user-message');
             messageElement.textContent = data.message;
+
+
         }
         else {
+            messageElement.style.backgroundColor = localStorage.their_boxcolor;
+
             messageElement.textContent = data.unm + " : " + data.message;
             messageElement.setAttribute("class", "their_messages");
+
+
 
 
         }
