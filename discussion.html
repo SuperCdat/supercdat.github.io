@@ -175,6 +175,8 @@
 
         if (user === data.uid) {
             messageElement.style.backgroundColor = localStorage.your_boxcolor;
+            messageElement.style.color = localStorage.your_color;
+
 
             messageElement.classList.add('user-message');
             messageElement.textContent = data.message;
@@ -183,6 +185,8 @@
         }
         else {
             messageElement.style.backgroundColor = localStorage.their_boxcolor;
+            messageElement.style.color = localStorage.thier_color;
+
 
             messageElement.textContent = data.unm + " : " + data.message;
             messageElement.setAttribute("class", "their_messages");
@@ -347,7 +351,6 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            color: black;
 
             animation: growup 0.2s;
             
@@ -361,7 +364,7 @@
             margin-bottom: 10px;
             padding: 8px;
             border-radius: 5px;
-            background-color: #e1ffc7;
+            /* background-color: #e1ffc7; */
             max-width: 80%;
             text-align: left;
             width: fit-content;
@@ -373,7 +376,7 @@
             }
 
             #messages li.user-message {
-            background-color: #d1eaff;
+            /* background-color: #d1eaff; */
             margin-left: auto;
             text-align: right;
 
@@ -759,11 +762,17 @@
                     if (localStorage.their_boxcolor != "") {
                         document.getElementById("thier_boxcolor").value = localStorage.their_boxcolor;
                     }
+                    else {
+                        localStorage.their_boxcolor = "#e1ffc7";
+                        document.getElementById("thier_boxcolor").value = localStorage.their_boxcolor;
+
+                    }
 
                     for (i = 0; i < document.getElementsByClassName("their_messages").length; i++) {
                             document.getElementsByClassName("their_messages")[i].style.setProperty("background-color", localStorage.their_boxcolor);
 
                     }
+
                     if (document.getElementById("thier_boxcolor").value != "#e1ffc7") {
                         document.getElementById("reset_thier_boxcolor").style.display = "block";
 
@@ -771,6 +780,11 @@
 
                     if (localStorage.your_boxcolor != "") {
                         document.getElementById("your_boxcolor").value = localStorage.your_boxcolor;
+                    }
+                    else {
+                        localStorage.your_boxcolor = "#d1eaff";
+                        document.getElementById("your_boxcolor").value = localStorage.your_boxcolor;
+
                     }
 
                     for (i = 0; i < document.getElementsByClassName("user-message").length; i++) {
@@ -786,7 +800,7 @@
                         document.getElementsByClassName("their_messages")[i].style.setProperty("color", localStorage.thier_color);
 
                     }
-                    console.log(localStorage.thier_color);
+                    // console.log(localStorage.thier_color);
                     for (i = 0; i < document.getElementsByClassName("user-message").length; i++) {
                         document.getElementsByClassName("user-message")[i].style.setProperty("color", localStorage.your_color);
 
