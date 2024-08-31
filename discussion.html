@@ -4,57 +4,877 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SuperCdat</title>
-    <link href='css/discussion.css' rel='stylesheet'>
+    <!-- <link href='css/discussion.css' rel='stylesheet'> -->
+    <!-- <link href='css/index.css' rel='stylesheet'> -->
+
     <link rel="shortcut icon" href="assets/cdsuperat-wuaze.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 </head>
 <body onload="ready()" id="Body">
-    <main id="swup" class="transition-fade">
-        <link href='css/index.css' rel='stylesheet'>
+    <!-- <main id="swup" class="transition-fade"> -->
+        <!-- <link href='css/discussion.css' rel='stylesheet'> -->
         <!-- <script defer type="text/javascript" src="js/index.js"></script> -->
 
-        <div id="div1">
+        <div class="div1" id="div1">
+
+            <!-- <h2>Page Blocked! </h2>
+            <h1>Coming Soon <span>&ast;</span></h1> -->
+
+            <div id="dscsHeader">
+                <a href="./index.html"><button id="backHome_btn"><span class="material-symbols-outlined">arrow_left_alt</span></button></a>
+                <button id="options_btn"><span class="material-symbols-outlined">settings</span></button>
+
+            </div>
+            <div id="chat-container">
+                <div id="chat-box">
+                    <ul id="messages"></ul>
+                </div>
+                <div id="inputbox">
+                    <div id="userTyping">status</div>
+
+                    <input autocomplete="off" type="text" id="message-input" placeholder="Gõ tin nhắn..." autofocus>
+                    <button id="send-btn"><span class="material-symbols-outlined" style="scale: 1.5; margin-top: 5px;">send</span></button>
+                </div>
+                <button id="toLatest"><span class="material-symbols-outlined">arrow_downward</span></button>
+        
+            </div>
+            <div id="dscs_config">
+                <h2>Tùy Chọn (beta)</h2>
+                Thanh Trượt :
+                <select name="turn_scrollbar" id="turn_scrollbar" style="width: 100px; background-color: rgb(6 7 19); border: 1px solid rgba(118, 185, 237, 1); color: white; height: 50px; outline: none; margin-top: 10px; margin-bottom: 10px; font-family: 'QuickSand'; border-radius: 4px;">
+                    <option value="off">Tắt</option>
+                    <option value="on">Bật</option>
+                </select>
+                Màu Ô Tin Nhắn Của Người Khác :
+                <input type="color" name="their_boxcolor" id="thier_boxcolor" value="#e1ffc7" style="margin-top: 10px; margin-bottom: 10px; border: 1px solid rgb(118, 185, 237); border-radius: 4px;">
+                <span class="material-symbols-outlined" id="reset_thier_boxcolor" style="display: none; margin-top: 10px; margin-bottom: 10px; background-color: rgba(6, 7, 19, 0.5); width: 40px; height: 32.25px; padding-top: 7.75px; border-radius: 40px;">restart_alt</span>
+                Màu Ô Tin Nhắn Của Bạn :
+                <input type="color" name="your_boxcolor" id="your_boxcolor" value="#d1eaff" style="margin-top: 10px; margin-bottom: 10px; border: 1px solid rgb(118, 185, 237); border-radius: 4px;">
+                <span class="material-symbols-outlined" id="reset_your_boxcolor" style="display: none; margin-top: 10px; margin-bottom: 10px; background-color: rgba(6, 7, 19, 0.5); width: 40px; height: 32.25px; padding-top: 7.75px; border-radius: 40px;">restart_alt</span>
+                Màu Tin Nhắn Của Người Khác :
+                <select name="thier_color" id="thier_color" style="width: 100px; background-color: rgb(6 7 19); border: 1px solid rgba(118, 185, 237, 1); color: white; height: 30px; outline: none; margin-top: 10px; margin-bottom: 10px; font-family: 'QuickSand'; border-radius: 4px;">
+                    <option value="black">Đen</option>
+                    <option value="white">Trắng</option>
+                </select>
+                Màu Tin Nhắn Của Bạn :
+                <select name="your_color" id="your_color" style="width: 100px; background-color: rgb(6 7 19); border: 1px solid rgba(118, 185, 237, 1); color: white; height: 30px; outline: none; margin-top: 10px; margin-bottom: 10px; font-family: 'QuickSand'; border-radius: 4px;">
+                    <option value="black">Đen</option>
+                    <option value="white">Trắng</option>
+                </select>
+
+            </div>
         </div>
+
+        <script type="module">
+            // app.js
+    
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getDatabase, remove, set, ref, push, onChildAdded, onChildRemoved } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+    
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDc4gG1fGxYI64nymEfSjw1BISrIdyvwA4",
+        authDomain: "cd-s-web-discussion.firebaseapp.com",
+        databaseURL: "https://cd-s-web-discussion-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "cd-s-web-discussion",
+        storageBucket: "cd-s-web-discussion.appspot.com",
+        messagingSenderId: "179301109876",
+        appId: "1:179301109876:web:46e5dcbafad0b13b240121",
+        measurementId: "G-J3560LF2N6"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // const auth = getAuth(app);
+    
+    // References to DOM elements
+    const messageInput = document.getElementById('message-input');
+    const sendBtn = document.getElementById('send-btn');
+    const messagesList = document.getElementById('messages');
+    
+    // Authenticate anonymously
+    // signInAnonymously(auth).catch((error) => {
+    //     console.error('Error signing in anonymously:', error);
+    // });
+    
+    // Send message to Firebase
+    
+    // let userName = prompt("Type your name:");
+    // let userName = "cd";
+
+    let userName = localStorage.logname;
+    let disname = localStorage.disname;
+    setTimeout(function () {
+        localStorage.logname = "";
+        localStorage.disname = "";
+    }, 3000);
+
+    // console.log(userName);
+    // console.log(disname);
+
+    // console.log(localStorage.logname);
+    // console.log(localStorage.disname);
+
+
+    
+    messageInput.addEventListener("keypress", function (ev) {
+        if (ev.key == "Enter") {
+            sendBtn.click();
+        }
+    })
+    
+    sendBtn.addEventListener('click', () => {
+        const message = messageInput.value;
+        if (message) {
+            // const user = auth.currentUser;
+            const user = userName;
+    
+            const newDate = new Date();
+            let CurrentTime = (newDate.getDate() + " - " + (newDate.getMonth() + 1) + " - " + newDate.getFullYear() + " | " + newDate.getHours() + ":" + newDate.getMinutes() + ":" + newDate.getSeconds());
+
+            const messagesRef = ref(db, 'Datas/Discussions/');
+            push(messagesRef, {
+                message,
+                uid: userName,
+                unm: disname,
+                timestamp: Date.now(),
+                sendtime: CurrentTime,
+            });
+            messageInput.value = '';
+            messageInput.focus();
+        }
+    });
+    
+    
+    
+    // Listen for new messages
+    const messagesRef = ref(db, 'Datas/Discussions/');
+    onChildAdded(messagesRef, (snapshot) => {
+        const data = snapshot.val();
+        const user = userName;
+        const messageElement = document.createElement('li');
+
+        messageElement.setAttribute("id", "mes-" + snapshot.key);
+
+        if (user === data.uid) {
+            messageElement.classList.add('user-message');
+            messageElement.textContent = data.message;
+        }
+        else {
+            messageElement.textContent = data.unm + " : " + data.message;
+            messageElement.setAttribute("class", "their_messages");
+
+
+        }
+
+        messagesList.appendChild(messageElement);
+        if (document.getElementById("chat-box").scrollHeight - document.getElementById("chat-box").scrollTop - document.getElementById("chat-box").clientHeight < 100) {
+            // $("#chat-box").animate({scrollTop: document.getElementById("chat-box").scrollHeight}, 500);
+            document.getElementById("chat-box").scrollTop = document.getElementById("chat-box").scrollHeight;
+
+    
+        }
+        
+    
+    });
+    onChildRemoved(messagesRef, (snapshot) => {
+        const messageElement = document.getElementById("mes-" + snapshot.key);
+        messageElement.textContent = "This message has been removed";
+    
+        // messagesList.appendChild(messageElement);
+        // if (document.getElementById("chat-box").scrollTop + 300 >= document.getElementById("chat-box").scrollHeight - 300) {
+        //     document.getElementById("chat-box").scrollTop = document.getElementById("chat-box").scrollHeight;
+    
+        // }
+    
+        setTimeout(function () {messageElement.remove()}, 5000);
+    
+    });
+    
+    document.getElementById("chat-box").onscroll = function () {
+        // console.log(document.getElementById("chat-box").scrollTop + 400);
+        // console.log(document.getElementById("chat-box").scrollHeight - 250);
+        if (document.getElementById("chat-box").scrollHeight - document.getElementById("chat-box").scrollTop - document.getElementById("chat-box").clientHeight == 0) {
+            document.getElementById("toLatest").style.opacity = 0;
+            document.getElementById("toLatest").style.bottom = "1px"; 
+    
+    
+        }
+        else {
+            document.getElementById("toLatest").style.opacity = 1;
+            document.getElementById("toLatest").style.bottom = "81px";
+        }
+    }
+    document.getElementById("toLatest").onclick = function () {
+        // document.getElementById("chat-box").scrollTop = document.getElementById("chat-box").scrollHeight;
+        $("#chat-box").animate({scrollTop: document.getElementById("chat-box").scrollHeight}, 500);
+
+    }
+    
+    const statusRef = ref(db, "Status/UserTyping/");
+    messageInput.addEventListener("focus", function () {
+
+        set(ref(db, "Status/UserTyping/" + userName), { typing : disname , usrtyping : userName });
+    });
+    messageInput.addEventListener("focusout", function () {
+        const rstref = ref(db, "Status/UserTyping/" + userName);
+        remove(rstref);
+    });
+
+    onChildAdded(statusRef, function (snapshot) {
+
+
+        if (snapshot.val().usrtyping != userName) {
+        document.getElementById("userTyping").style.display = "block";
+        document.getElementById("userTyping").style.opacity = 1;
+        document.getElementById("userTyping").textContent = snapshot.val().typing + " Đang Gõ";
+
+        }
+
+
+    });
+    onChildRemoved(statusRef, function () {
+        document.getElementById("userTyping").style.opacity = 0;
+
+        setTimeout(function () { document.getElementById("userTyping").style.display = "none"; }, 500);
+    });
+
+
+    
+        </script>
+
+        <style>
+            /* styles.css */
+
+
+
+            body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(6 7 19);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+
+            /* scrollbar-width: thin; */
+
+            }
+
+            #dscsHeader {
+                height: 30px;
+                background: rgba(6, 7, 19, 0.1);
+                backdrop-filter: blur(10px);
+            }
+
+
+            #chat-container {
+            /* background-color: rgb(6 7 19); */
+            /* border: 1px solid #ccc; */
+            border-radius: 5px;
+            width: 100%;
+            height: calc(100% - 30px);
+            display: flex;
+            flex-direction: column;
+
+            margin-left: auto;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            font-family: "QuickSand";
+            font-weight: 800;
+            
+            }
+
+            #dscs_config {
+            display: none;
+            /* background-color: rgb(6 7 19); */
+            /* border: 1px solid #ccc; */
+            border-radius: 5px;
+            width: 100%;
+            height: calc(100% - 30px);
+            flex-direction: column;
+
+            margin-left: auto;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            font-family: "QuickSand";
+            font-weight: 800;
+            text-wrap: wrap;
+
+            text-align: center;
+            align-items: center;
+            }
+
+            #chat-box {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+
+            scrollbar-width: none;
+            scrollbar-color: rgb(66, 66, 66) rgb(6 7 19);
+
+            }
+
+            #messages {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: black;
+
+            animation: growup 0.2s;
+            
+            }
+            @keyframes growup {
+                from {scale: 0; }
+                to {scale: 1;}
+            }
+
+            #messages li {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            background-color: #e1ffc7;
+            max-width: 80%;
+            text-align: left;
+            width: fit-content;
+
+            text-wrap: wrap;
+
+            animation: growup 0.2s;
+
+            }
+
+            #messages li.user-message {
+            background-color: #d1eaff;
+            margin-left: auto;
+            text-align: right;
+
+            /* width: fit-content;
+
+
+
+            animation: growup 0.2s; */
+
+
+            }
+
+            #userTyping {
+                font-family: "poppins_font";
+                font-weight: 200;
+                padding-top: 7px;
+                padding-bottom: 13px;
+
+                padding-left: 15px;
+                padding-right: 15px;
+                bottom: 55px;
+                left: 50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                height: 20px;
+                width: auto;
+                background-color: rgba(6, 7, 19, 0.5);
+                border-radius: 40px;
+
+                display: none;
+                opacity: 0;
+                transition: 0.5s;
+
+            }
+
+            #inputbox {
+            display: flex;
+            height: 70px;
+            width: 100%;
+            justify-items: center;
+            align-items: center;
+            }
+
+            #message-input {
+            border: none;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            border-radius: 40px;
+            width: calc(100% - 100px);
+            margin: auto;
+            height: 40px;
+            outline: none;
+            background-color: rgba(6, 7, 19, 0.6);
+            border: 1px solid #2E3C51;
+            font-size: 15px;
+            color: white;
+
+            font-family: "QuickSand";
+            backdrop-filter: blur(10px);
+
+
+            z-index: 1;
+
+            }
+
+            #send-btn {
+            padding: 10px;
+            border: none;
+            background-color: rgba(118, 185, 237, 1);
+            color: rgb(6 7 19);
+            border-radius: 70px;
+            cursor: pointer;
+            height: 65px;
+            width: 65px;
+
+            z-index: 1;
+
+            }
+            #toLatest {
+            transition: 0.5s;
+
+            opacity: 0;
+            left: 10px;
+            bottom: 1px;
+            position: absolute;
+
+            border-radius: 4px;
+            border: 1px solid #2E3C51;
+
+            width: 60px;
+            height: 60px;
+
+            background-color: rgba(6, 7, 19, 0.5);
+            backdrop-filter: blur(10px);
+            color: white;
+            }
+        </style>
+
 
 
         <!-- <a href="https://supercdat.github.io/">
             <h1 id="supercdat">.supercdat</h1>
         </a> -->
-    </main>
+
+
+
+
+        <style>
+            @font-face {
+                font-family: "poppins_font";
+                src: url("../assets/Poppins-ExtraLight.ttf");
+            }
+
+            body {
+                overflow: hidden;
+                height: 100%;
+                /* background-image: url("../assets/unnamed2.jpg"); */
+                background-position: center;
+                background-size: cover;
+                background-attachment: fixed;
+                /* user-select: none; */
+            }
+            #div1 {
+                font-family: "poppins_font";
+                color: white;
+                height: calc(100% - 20px);
+                width: calc(100% - 20px);
+                border-radius: 4px;
+                top: 50%;
+                left: 50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                background: rgba(6, 7, 19, 0.5);
+                transition: 0.5s;
+                /* backdrop-filter: blur(25px); */
+                text-wrap: nowrap;
+
+                display: none;
+                opacity: 0;
+
+                transition: 0.5s;
+            }
+
+            #a_tohome {
+                display: none;
+            }
+            #tohome {
+                user-select: none;
+                font-family: "poppins_font";
+                font-size: xx-large;
+                top: 50%;
+                left: 50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                color: white;
+                transition: 1s;
+
+            }
+            #tohome::before {
+                content: "<< ";
+                top: 50%;
+                left: calc(50% - 80px);
+                position: absolute;
+                transform: translate(-50%, -50%);
+                opacity: 0;
+                transition: 1s;
+
+            }
+            #tohome:hover {
+                left: calc(50% + 10px);
+                transition: 1s;
+            }
+            #tohome:hover::before {
+                left: calc(50% - 70px);
+                opacity: 1;
+                transition: 1s;
+            }
+            #tohome:active {
+                left: 50%;
+                transition: 1s;
+            }
+            #tohome:active::before {
+                left: calc(50% - 75px);
+                opacity: 1;
+                transition: 1s;
+            }
+
+            #backHome_btn {
+                color: white;
+                background-color: rgba(6, 7, 19, 0.5);
+                width: 50px;
+                height: 30px;
+                border: none;
+                border-radius: 30px;
+            }
+            #backHome_btn span {
+                margin-top: 1.5px;
+            }
+
+            #backHome_btn:active {
+                background-color: rgba(37, 38, 54, 0.5);
+                
+            }
+
+            #options_btn {
+                color: white;
+                background-color: rgba(6, 7, 19, 0.5);
+                width: 50px;
+                height: 30px;
+                border: none;
+                border-radius: 30px;
+            }
+            #options_btn span {
+                margin-top: 1.5px;
+            }
+            #options_btn:active {
+                background-color: rgba(37, 38, 54, 0.5);
+                
+            }
+
+            /* #div1 h2 {
+                top: 42%;
+                left: 50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+            }
+            #div1 h1 {
+                top: 48%;
+                left: 50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+            }
+            #div1 h1 span::after {
+                position: fixed;
+                opacity: 0;
+            }
+            #div1 h1 span:hover::after {
+                background-color: rgba(0, 92, 116, 0.5);
+                margin-left: 15px;
+                opacity: 1;
+                content: "Maybe :))";
+                text-wrap: nowrap;
+                font-size: 20px;
+                padding-left: 5px;
+                padding-right: 5px;
+                border-radius: 4px;
+                animation: maybefadein 0.5s;
+                color: white;
+            }
+            @keyframes maybefadein {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            } */
+        </style>
+
+
+    <!-- </main> -->
     
-    <a href="index.html"><div id="tohome">.home</div></a>
-    <script defer type="text/javascript" src="js/about.js"></script>
-    <!-- <div id="List_Bigdiv">
-        <div onclick="Menuopen_close()" id="List_Filteroc"></div>
-        <div id="List_Bigger_Mainpart">
-            <div id="List_Mainpart">
-                <a href="index.html">
-                    <div onclick="Menuopen_close()" class="Pages_" id="Pages_supercdat"><span>.home</span></div>
-                </a>
-                <a href="projects.html">
-                <div onclick="Menuopen_close()" class="Pages_" id="Pages_projects"><span>.projects</span></div>
-                </a>
-                <a href="about.html">
-                    <div onclick="Menuopen_close()" class="Pages_" id="Pages_about"><span>.about</span></div>
-                </a>
-                <a href="index.html">
-                    <div class="Pages_" id="Pages_supercdat"><span>.home</span></div>
-                </a>
-                <a href="projects.html">
-                <div class="Pages_" id="Pages_projects"><span>.projects</span></div>
-                </a>
-                <a href="about.html">
-                    <div class="Pages_" id="Pages_about"><span>.about</span></div>
-                </a>
-            </div>
-        </div>
-    </div>
+    <a id="a_tohome" href="index.html"><div id="tohome">.home</div></a>
+    <!-- <script defer type="text/javascript" src="js/about.js"></script> -->
 
-    <div id="Menu_Bigdiv">
-        <div onclick="Menuopen_close()" id="Menu_"></div>
-    </div>
-    <script defer type="text/javascript" src="js/index.js"></script>
+    <!-- <script defer type="text/javascript" src="js/index.js"></script> -->
 
-    <script src="https://unpkg.com/swup@4"></script>
+    <script>
+        function ready() {
+
+            document.getElementById("dscs_config").style.display = "none";
+            document.getElementById("chat-container").style.display = "flex";
+
+
+            if (localStorage.deleteBackground == "false") {
+                document.getElementById("Body").style.backgroundImage = "url(assets/unnamed" + Math.floor(Math.random() * 5) + ".jpg)";
+            }
+            else {
+                document.getElementById("Body").style.backgroundColor = "#10151D";
+
+
+
+            }
+
+
+            setTimeout(function () {
+                if (localStorage.logname == "") {
+                    document.getElementById("div1").style.display = "none";
+                    document.getElementById("a_tohome").style.display = "block";
+                }
+                else {
+                    document.getElementById("div1").style.display = "block";
+                    document.getElementById("div1").style.opacity = 1;
+
+
+                }
+            }, 300);
+            // div1.style.display = "";
+            // div1.style.animation = "div1_show 0.5s";
+            // div1.style.backdropFilter = "blur(25px)";
+
+
+            is_blur();
+            is_Border();
+
+            is_Config();
+
+
+
+
+            }
+
+            function is_blur() {
+                if (localStorage.removeBlur == "true") {
+                    for (i = 0; i < document.getElementsByClassName("div1").length; i++) {
+                        document.getElementsByClassName("div1")[i].style.removeProperty("backdrop-filter");
+                    }
+                }
+                else {
+                    for (i = 0; i < document.getElementsByClassName("div1").length; i++) {
+                        document.getElementsByClassName("div1")[i].style.setProperty("backdrop-filter", "blur(" + localStorage.blurLevel + "px)");
+                    }
+                }
+            }
+
+            function is_Border() {
+                if (localStorage.deleteBackground == "false") {
+                    for (i = 0; i < document.getElementsByClassName("div1").length; i++) {
+                        document.getElementsByClassName("div1")[i].style.setProperty("border", "0");
+                    }
+                }
+                else {
+                    for (i = 0; i < document.getElementsByClassName("div1").length; i++) {
+                        document.getElementsByClassName("div1")[i].style.setProperty("border-top", "1px solid #2E3C51");
+                        document.getElementsByClassName("div1")[i].style.setProperty("border-bottom", "1px solid #2E3C51");
+
+                    }
+                }
+            }
+
+            document.getElementById("options_btn").addEventListener("click", function () {
+
+                // console.log(document.getElementById("dscs_config").style.display);
+                // console.log(document.getElementById("chat-container").style.display);
+
+
+                if (document.getElementById("dscs_config").style.display == "none") {
+                    document.getElementById("dscs_config").style.display = "flex";
+                    document.getElementById("chat-container").style.display = "none";
+
+                }
+                else {
+                    document.getElementById("dscs_config").style.display = "none";
+                    document.getElementById("chat-container").style.display = "flex";
+
+                }
+            })
+
+            document.getElementById("turn_scrollbar").addEventListener("change", function () {
+
+                localStorage.turn_scrollbar = document.getElementById("turn_scrollbar").value;
+
+                if (document.getElementById("turn_scrollbar").value == "on") {
+                    document.getElementById("chat-box").style.scrollbarWidth = "thin";
+                }
+                else {
+                    document.getElementById("chat-box").style.scrollbarWidth = "none";
+                }
+
+            });
+
+            function is_Config() {
+                if (localStorage.turn_scrollbar == "on") {
+                    document.getElementById("chat-box").style.scrollbarWidth = "thin";
+                    document.getElementById("turn_scrollbar").value = "on";
+                }
+                else {
+                    document.getElementById("chat-box").style.scrollbarWidth = "none";
+                    document.getElementById("turn_scrollbar").value = "off";
+
+                }
+
+                setTimeout(function () {
+                    if (localStorage.their_boxcolor != "") {
+                        document.getElementById("thier_boxcolor").value = localStorage.their_boxcolor;
+                    }
+
+                    for (i = 0; i < document.getElementsByClassName("their_messages").length; i++) {
+                            document.getElementsByClassName("their_messages")[i].style.setProperty("background-color", localStorage.their_boxcolor);
+
+                    }
+                    if (document.getElementById("thier_boxcolor").value != "#e1ffc7") {
+                        document.getElementById("reset_thier_boxcolor").style.display = "block";
+
+                    }
+
+                    if (localStorage.your_boxcolor != "") {
+                        document.getElementById("your_boxcolor").value = localStorage.your_boxcolor;
+                    }
+
+                    for (i = 0; i < document.getElementsByClassName("user-message").length; i++) {
+                            document.getElementsByClassName("user-message")[i].style.setProperty("background-color", localStorage.your_boxcolor);
+
+                    }
+                    if (document.getElementById("your_boxcolor").value != "#d1eaff") {
+                        document.getElementById("reset_your_boxcolor").style.display = "block";
+
+                    }
+
+                    for (i = 0; i < document.getElementsByClassName("their_messages").length; i++) {
+                        document.getElementsByClassName("their_messages")[i].style.setProperty("color", localStorage.thier_color);
+
+                    }
+                    console.log(localStorage.thier_color);
+                    for (i = 0; i < document.getElementsByClassName("user-message").length; i++) {
+                        document.getElementsByClassName("user-message")[i].style.setProperty("color", localStorage.your_color);
+
+                    }
+
+                    document.getElementById("thier_color").value = localStorage.thier_color;
+                    document.getElementById("your_color").value = localStorage.your_color;
+
+                    if (document.getElementById("chat-box").scrollHeight - document.getElementById("chat-box").scrollTop - document.getElementById("chat-box").clientHeight == 0) {
+                        document.getElementById("toLatest").style.opacity = 0;
+                        document.getElementById("toLatest").style.bottom = "1px"; 
+                
+                    }
+                    else {
+                        document.getElementById("toLatest").style.opacity = 1;
+                        document.getElementById("toLatest").style.bottom = "81px";
+                    }
+
+
+                }, 300);
+
+
+
+                
+
+            }
+
+            document.getElementById("thier_boxcolor").onchange = their_boxcolor_change;
+            
+            function their_boxcolor_change() {
+
+                document.getElementById("reset_thier_boxcolor").style.display = "block";
+                localStorage.their_boxcolor = document.getElementById("thier_boxcolor").value;
+
+                for (i = 0; i < document.getElementsByClassName("their_messages").length; i++) {
+                        document.getElementsByClassName("their_messages")[i].style.setProperty("background-color", document.getElementById("thier_boxcolor").value);
+
+                }
+            }
+            
+            document.getElementById("your_boxcolor").onchange = your_boxcolor_change;
+            
+            function your_boxcolor_change() {
+
+                document.getElementById("reset_your_boxcolor").style.display = "block";
+                localStorage.your_boxcolor = document.getElementById("your_boxcolor").value;
+
+                for (i = 0; i < document.getElementsByClassName("user-message").length; i++) {
+                        document.getElementsByClassName("user-message")[i].style.setProperty("background-color", document.getElementById("your_boxcolor").value);
+
+                }
+            }
+
+            document.getElementById("reset_thier_boxcolor").addEventListener("click", function () {
+                document.getElementById("thier_boxcolor").value = "#e1ffc7";
+                their_boxcolor_change();
+                document.getElementById("reset_thier_boxcolor").style.display = "none";
+
+            })
+            document.getElementById("reset_your_boxcolor").addEventListener("click", function () {
+                document.getElementById("your_boxcolor").value = "#d1eaff";
+                your_boxcolor_change();
+                document.getElementById("reset_your_boxcolor").style.display = "none";
+
+            })
+
+            document.getElementById("thier_color").addEventListener("change", function () {
+
+                localStorage.thier_color = document.getElementById("thier_color").value;
+
+                for (i = 0; i < document.getElementsByClassName("their_messages").length; i++) {
+                    document.getElementsByClassName("their_messages")[i].style.setProperty("color", localStorage.thier_color);
+
+                }
+
+
+            });
+
+            document.getElementById("your_color").addEventListener("change", function () {
+
+                localStorage.your_color = document.getElementById("your_color").value;
+                
+                for (i = 0; i < document.getElementsByClassName("user-message").length; i++) {
+                    document.getElementsByClassName("user-message")[i].style.setProperty("color", localStorage.your_color);
+
+                }
+
+
+            });
+    </script>
+
+
+
+    <!-- <script defer type="text/javascript" src="js/index.js"></script> -->
+
+    <!-- <script src="https://unpkg.com/swup@4"></script>
     <script>
         const swup = new Swup();
     </script> -->

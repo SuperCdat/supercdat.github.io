@@ -7,26 +7,371 @@
     <link href='css/projects.css' rel='stylesheet'>
     <link rel="shortcut icon" href="assets/cdsuperat-wuaze.png" type="image/x-icon">
 </head>
-<body onload="ready()" id="Body">
+<body onload="readygo()" id="Body">
         <main id="swup" class="transition-fade">
-            <link href='css/projects.css' rel='stylesheet'>
-            <script defer type="text/javascript" src="js/about.js"></script>
+            <!-- <link href='css/projects.css' rel='stylesheet'> -->
+            <script defer type="text/javascript" src="js/projects.js"></script>
 
-            <div id="div1">
-                <a id="anchor_contact_github" target="_blank" href="https://github.com/SuperCdat">
-                    <img class="contact_" src="assets/github-mark-white.png" alt="My GitHub Page">
-                </a>
-                <a id="anchor_contact_youtube" target="_blank" href="https://youtube.com/@SuperCdat">
-                    <div class="contact_" id="contact_youtube"></div>
-                </a>
-                <a id="anchor_contact_itch" target="_blank" href="https://chautiendat3.itch.io">
-                    <img class="contact_" src="assets/itchio-logo-textless-white.png" alt="My Itch.io Page">
-                </a>
+            <div class="div1" id="div1">
+                <h1 class="Heading_projects">PROJECTS</h1>
+            </div>
+
+            <div id="div12">
+                <div class="div1" id="fotter">
+                    <a id="anchor_contact_github" target="_blank" href="https://github.com/SuperCdat">
+                        <img class="contact_" src="assets/github-mark-white.png" alt="My GitHub Page">
+                    </a>
+                    <a id="anchor_contact_youtube" target="_blank" href="https://youtube.com/@SuperCdat">
+                        <div class="contact_" id="contact_youtube"></div>
+                    </a>
+                    <a id="anchor_contact_itch" target="_blank" href="https://chautiendat3.itch.io">
+                        <img class="contact_" src="assets/itchio-logo-textless-white.png" alt="My Itch.io Page">
+                    </a>
+                    <a id="anchor_contact_xbox" target="_blank" href="https://www.xbox.com/vi-VN/play/user/SuperCdat">
+                        <div class="contact_" id="contact_xbox"></div>
+                    </a>
+                    <a id="anchor_contact_roblox" target="_blank" href="https://www.roblox.com/vi/users/3473444008/profile">
+                        <div class="contact_" id="contact_roblox"></div>
+                    </a>
+                </div>
+            
             </div>
 
             <a href="projects.html">
                 <h1 id="supercdat">.projects</h1>
             </a>
+
+
+
+
+
+            <style>
+                @font-face {
+                    font-family: "poppins_font";
+                    src: url("../assets/Poppins-ExtraLight.ttf");
+                }
+                @font-face {
+                    font-family: "thebold_font";
+                    src: url("../assets/TheBoldFont.ttf");
+                }
+                @font-face {
+                    font-family: "retrokiacaps_font";
+                    src: url("../assets/RetrokiaCaps.ttf");
+                }
+
+                .transition-fade {
+                    opacity: 1;
+                    transition: 0.5s;
+                }
+
+                html.is-animating .transition-fade {
+                    opacity: 0;
+                }
+
+                #tohome {
+                    font-family: "poppins_font";
+                    font-size: xx-large;
+                    top: 50%;
+                    left: 50%;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                    transition: 1s;
+                }
+                #tohome::before {
+                    content: "<< ";
+                    top: 50%;
+                    left: calc(50% - 80px);
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    opacity: 0;
+                    transition: 1s;
+                }
+                #tohome:hover {
+                    left: calc(50% + 10px);
+                    transition: 1s;
+                }
+                #tohome:hover::before {
+                    left: calc(50% - 70px);
+                    opacity: 1;
+                    transition: 1s;
+                }
+                #tohome:active {
+                    left: 50%;
+                    transition: 1s;
+                }
+                #tohome:active::before {
+                    left: calc(50% - 75px);
+                    opacity: 1;
+                    transition: 1s;
+                }
+
+                body {
+                    height: 1200px;
+                    /* background-image: url("../assets/unnamed2.jpg"); */
+                    background-position: center;
+                    background-size: cover;
+                    background-attachment: fixed;
+                    user-select: none;
+                }
+
+                .Heading_projects {
+                    font-family: "retrokiacaps_font";
+                    font-size: max(5vw, 35px);
+                    margin: 30px auto;
+                    text-align: center;
+                    color: white;
+
+                    word-wrap: break-word;
+
+
+                    text-shadow:
+                        0 0 7px #fff,
+                        0 0 10px #fff,
+                        0 0 21px #fff,
+                        0 0 42px rgb(255, 255, 0),
+                        0 0 82px rgb(255, 255, 0),
+                        0 0 92px rgb(255, 255, 0);
+                }
+                /* @keyframes div1_hide {
+                    0% {opacity: 1;}
+                    100% {opacity: 0;}
+                }
+                @keyframes div1_show {
+                    0% {opacity: 0;}
+                    100% {opacity: 1;}
+                }
+
+                @keyframes div1_blur {
+                    0% {backdrop-filter: blur(0px);}
+                    100% {backdrop-filter: blur(25px);}
+                }
+
+                #div1 {
+                    height: 1197px;
+                    width: calc(100% - 20px);
+                    border-radius: 4px;
+                    top: 609px;
+                    left: 50%;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    background: rgba(6, 7, 19, 0.5);
+                    transition: backdrop-filter 0.5s;
+                    backdrop-filter: blur(25px);
+                }
+
+                #anchor_contact_github {
+                    bottom: 0px;
+                    left: max(25%, calc(50% - 100px));
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                }
+
+                #anchor_contact_youtube {
+                    bottom: 4px;
+                    left: 50%;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                }
+                #contact_youtube {
+                    height: 46px;
+                    width: 46px;
+                    border-radius: 125px;
+                    background-image: url("../assets/yt_logo_rgb_dark.png");
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                }
+
+                #anchor_contact_itch {
+                    bottom: 4px;
+                    left: min(75%, calc(50% + 100px));
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                }
+
+                .contact_ {
+                    transition: transform .2s;
+                    scale: 100%;
+                }
+                .contact_:hover {
+                    transform: scale(110%);
+                } */
+
+                #supercdat {
+                    top: 15px;
+
+                    left: 67px;
+                    position: fixed;
+                    transform: translate(-50%, -50%);
+
+                    animation: supercdatfade 50s linear infinite;
+                }
+                #supercdat::before {
+                    content: ".projects";
+                    z-index: -1;
+                    top: 14px;
+                    left: 49px;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+
+
+                }
+                @keyframes glowing {
+                    0% {background-position: 0 0;}
+                    50% {background-position: 400% 0;}
+                    100% {background-position: 0 0;}
+                }
+                @keyframes supercdatfade {
+                    0% {background-position: 0 0;}
+                    50% {background-position: 400% 0;}
+                    100% {background-position: 0 0;}
+
+                }
+                /* #supercdat:hover {
+                    transition: color 0.5s;
+                    color: rgb(0, 0, 0);
+                }
+                #supercdat:active {
+                    color: rgb(26, 26, 26);
+                }
+
+                #Menu_Bigdiv {
+                    border-radius: 4px;
+                    top: 34px;
+                    right: -7px;
+                    position: fixed;
+                    transform: translate(-50%, -50%);
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 1000;
+                }
+                #Menu_ {
+                    height: 40px;
+                    width: 40px;
+                    transition: transform .2s;
+                }
+                #Menu_:active {
+                    transform: scale(80%);
+                }
+
+                @keyframes FadeIn_List_Bigdiv {
+                    0% {opacity: 0;}
+                    100% {opacity: 1;}
+                }
+                @keyframes FadeOut_List_Bigdiv {
+                    0% {opacity: 1;}
+                    100% {opacity: 0;}
+                }
+                #List_Bigdiv {
+                    height: 100%;
+                    width: 100%;
+                    z-index: 100;
+                    top: 0px;
+                    right: -500%;
+                    position: fixed;
+                    transform: translate(-50%, -50%);
+                }
+                #List_Filteroc {
+                    height: 100%;
+                    width: 100%;
+                    background-color: transparent;
+                    z-index: 101;
+                    top: 0px;
+                    left: 0px;
+                    position: fixed;
+                }
+                @keyframes FadeIn_List_Mainpart {
+                    0% {scale: 40%;}
+                    100% {scale: 100%;}
+                }
+                @keyframes FadeOut_List_Mainpart {
+                    0% {scale: 100%;}
+                    100% {scale: 40%;}
+                }
+                @keyframes FadeIn_List_Bigger_Mainpart {
+                    0% {top: 135px; right: -138px;}
+                    100% {top: 255px; right: -67px;}
+                }
+                @keyframes FadeOut_List_Bigger_Mainpart {
+                    0% {top: 255px; right: -67px;}
+                    100% {top: 135px; right: -138px;}
+                }
+                #List_Bigger_Mainpart {
+                    top: 255px;
+                    right: -67px;
+                    position: fixed;
+                    transform: translate(-50%, -50%);
+                    z-index: 110;
+                }
+                #List_Mainpart {
+                    height: 400px;
+                    width: 240px;
+                    border-radius: 4px;
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+
+                .Pages_ {
+                    height: 69.6px;
+                    width: 166.66666666666666px;
+                    color: white;
+                    font-family: "poppins_font";
+                    background-color: rgba(0, 0, 0, 0.3);
+                    left: 50%;
+                    position: fixed;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                    padding-left: 25px;
+                    padding-right: 25px;
+                    padding-top: 10.4px;
+                    border-radius: 4px;
+                    transition: all 0.5s;
+                    font-size: 40px;
+                    display: inline-block;
+
+                }
+                .Pages_::after {
+                    content: ">>";
+                    opacity: 0;
+                    right: 0px;
+                    transition: 0.5s;
+                    position: absolute;
+                }
+                .Pages_:hover {
+                    padding-left: 0px;
+                    padding-right: 50px;
+                }
+                .Pages_:hover::after {
+                    opacity: 1;
+                    right: 15px;
+                }
+                .Pages_:active {
+                    padding-left: 10px;
+                    padding-right: 40px;
+                }
+                .Pages_:active::after {
+                    opacity: 0.5;
+                    right: 5px;
+                }
+
+                #Pages_supercdat {
+                    top: 52px;
+                }
+                #Pages_projects {
+                    top: 143.5px;
+                }
+                #Pages_about {
+                    top: 235px;
+                }
+                #Pages_discussion {
+                    top: 326.5px;
+                }
+                #Pages_projects {
+                    top: 75px;
+                }
+                #Pages_about {
+                    top: 200px;
+                } */
+            </style>
+
 
         </main>
 
