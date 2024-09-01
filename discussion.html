@@ -197,7 +197,7 @@
         }
 
         messagesList.appendChild(messageElement);
-        if (document.getElementById("chat-box").scrollHeight - document.getElementById("chat-box").scrollTop - document.getElementById("chat-box").clientHeight < 100) {
+        if (document.getElementById("chat-box").scrollHeight - document.getElementById("chat-box").scrollTop - document.getElementById("chat-box").clientHeight < 100 || document.getElementById("toLatest").style.opacity == 0) {
             // $("#chat-box").animate({scrollTop: document.getElementById("chat-box").scrollHeight}, 500);
             document.getElementById("chat-box").scrollTop = document.getElementById("chat-box").scrollHeight;
 
