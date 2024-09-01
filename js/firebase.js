@@ -135,15 +135,7 @@ window.LogIn = () => {
 }
 
 window.Del_Sign_Cache = () => {
-    localStorage.Signname = "";
-    localStorage.Password = "";
-    localStorage.is_autolog = false;
-    localStorage.theme = "Dark";
-    localStorage.removeAnim = false;
-    localStorage.removeBlur = false;
-    localStorage.enableScrollbar = false;
-    localStorage.blurLevel = "50";
-    localStorage.deleteBackground = false;
+    localStorage.clear();
 
     document.getElementById("del_success_symbol").style.opacity = 1;
     setTimeout(function() {
