@@ -220,5 +220,11 @@ function is_Border() {
             document.getElementsByClassName("Pages_")[i].style.setProperty("border", "1px solid #2E3C51");
 
         }
+        for (i = 0; i < document.getElementsByClassName("game_gallery").length; i++) {
+            document.getElementsByClassName("game_gallery")[i].style.setProperty("border-top", "1px solid #2E3C51");
+            document.getElementsByClassName("game_gallery")[i].style.setProperty("border-bottom", "1px solid #2E3C51");
+
+
+        }
     }
 }
