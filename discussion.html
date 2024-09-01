@@ -66,14 +66,14 @@
                 <span class="material-symbols-outlined" id="reset_thier_boxcolor" style="display: none; margin-top: 10px; margin-bottom: 10px; background-color: rgba(6, 7, 19, 0.5); width: 40px; height: 32.25px; padding-top: 7.75px; border-radius: 40px;">restart_alt</span>
                 Màu Ô Tin Nhắn Của Bạn :
                 <input type="color" name="your_boxcolor" id="your_boxcolor" value="#d1eaff" style="margin-top: 10px; margin-bottom: 10px; border: 1px solid rgb(118, 185, 237); border-radius: 4px;">
-                <span class="material-symbols-outlined" id="reset_your_boxcolor" style="display: none; margin-top: 10px; margin-bottom: 10px; background-color: rgba(6, 7, 19, 0.5); width: 40px; height: 32.25px; padding-top: 7.75px; border-radius: 40px;">restart_alt</span>
+                <span class="material-symbols-outlined" id="reset_your_boxcolor" style="display: none; margin-top: 10px; margin-bottom: 10px; background-color: rgba(6, 7, 19, 0.5); width: 40px; height: 32.25px; padding-top: 7.75px; border-radius: 40px; user-select: none;">restart_alt</span>
                 Màu Tin Nhắn Của Người Khác :
                 <select name="thier_color" id="thier_color" style="width: 100px; background-color: rgb(6 7 19); border: 1px solid rgba(118, 185, 237, 1); color: white; height: 30px; outline: none; margin-top: 10px; margin-bottom: 10px; font-family: 'QuickSand'; border-radius: 4px;">
                     <option value="black">Đen</option>
                     <option value="white">Trắng</option>
                 </select>
                 Màu Tin Nhắn Của Bạn :
-                <select name="your_color" id="your_color" style="width: 100px; background-color: rgb(6 7 19); border: 1px solid rgba(118, 185, 237, 1); color: white; height: 30px; outline: none; margin-top: 10px; margin-bottom: 10px; font-family: 'QuickSand'; border-radius: 4px;">
+                <select name="your_color" id="your_color" style="width: 100px; background-color: rgb(6 7 19); border: 1px solid rgba(118, 185, 237, 1); color: white; height: 30px; outline: none; margin-top: 10px; margin-bottom: 10px; font-family: 'QuickSand'; border-radius: 4px; user-select: none;">
                     <option value="black">Đen</option>
                     <option value="white">Trắng</option>
                 </select>
@@ -281,6 +281,8 @@
 
 
             body {
+            -webkit-tap-highlight-color: transparent;
+
             font-family: Arial, sans-serif;
             background-color: rgb(6 7 19);
             display: flex;
