@@ -136,6 +136,7 @@ window.LogIn = () => {
 
 window.Del_Sign_Cache = () => {
     localStorage.clear();
+    document.location.reload();
 
     document.getElementById("del_success_symbol").style.opacity = 1;
     setTimeout(function() {

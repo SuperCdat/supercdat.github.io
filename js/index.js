@@ -22,6 +22,21 @@ function ready() {
         localStorage.blurLevel = "50";
     }
 
+    // let setFullscreen = confirm("Set Fullscreen (For Best Experience) :");
+    // if (confirm("Set Fullscreen (For Best Experience) :") === true) {
+    //     setTimeout(function () {document.getElementById("Body").click();}, 100);
+
+    //     document.getElementById("Body").onclick = () => {
+    //     var elem = document.documentElement;
+    //     if (elem.requestFullscreen) {
+    //         elem.requestFullscreen();
+    //     } else if (elem.webkitRequestFullscreen) {
+    //         elem.webkitRequestFullscreen();
+    //     } else if (elem.msRequestFullscreen) {
+    //         elem.msRequestFullscreen();
+    //     }
+    //     }
+    // }
 
     if (localStorage.deleteBackground == "false") {
         document.getElementById("Body").style.backgroundImage = "url(assets/unnamed" + Math.floor(Math.random() * 5) + ".jpg)";
