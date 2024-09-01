@@ -48,6 +48,9 @@ html.is-animating body {
 } */
 
 body {
+    -webkit-tap-highlight-color: transparent;
+
+
     height: auto;
     min-height: 10285px;
     /* max-height: 1300px; */
