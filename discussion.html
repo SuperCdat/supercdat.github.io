@@ -236,7 +236,10 @@
     }
     document.getElementById("toLatest").onclick = function () {
         // document.getElementById("chat-box").scrollTop = document.getElementById("chat-box").scrollHeight;
-        $("#chat-box").animate({scrollTop: document.getElementById("chat-box").scrollHeight}, 500);
+        $("#chat-box").animate({scrollTop: document.getElementById("chat-box").scrollHeight}, 500, function () {
+            document.getElementById("toLatest").style.opacity = 0;
+            document.getElementById("toLatest").style.bottom = "1px"; 
+        });
 
     }
     
@@ -644,6 +647,20 @@
     <!-- <script defer type="text/javascript" src="js/index.js"></script> -->
 
     <script>
+
+        if (localStorage.their_boxcolor == null) {
+                localStorage.their_boxcolor = "#e1ffc7";
+        }
+        if (localStorage.your_boxcolor == null) {
+                localStorage.your_boxcolor = "#d1eaff";
+        }
+        if (localStorage.thier_color == null) {
+                localStorage.thier_color = "black";
+        }
+        if (localStorage.your_color == null) {
+                localStorage.your_color = "black";
+        }
+
         function ready() {
 
             document.getElementById("dscs_config").style.display = "none";
@@ -759,7 +776,7 @@
                 }
 
                 setTimeout(function () {
-                    if (localStorage.their_boxcolor != "") {
+                    if (localStorage.their_boxcolor != null) {
                         document.getElementById("thier_boxcolor").value = localStorage.their_boxcolor;
                     }
                     else {
@@ -778,7 +795,7 @@
 
                     }
 
-                    if (localStorage.your_boxcolor != "") {
+                    if (localStorage.your_boxcolor != null) {
                         document.getElementById("your_boxcolor").value = localStorage.your_boxcolor;
                     }
                     else {
