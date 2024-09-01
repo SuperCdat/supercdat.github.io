@@ -1,5 +1,28 @@
 function ready() {
 
+    if (localStorage.Signname == null) {
+        localStorage.Signname = "";
+    }
+    if (localStorage.Password == null) {
+        localStorage.Password = "";
+    }
+    if (localStorage.deleteBackground == null) {
+        localStorage.deleteBackground = false;
+    }
+    if (localStorage.removeAnim == null) {
+        localStorage.removeAnim = false;
+    }
+    if (localStorage.removeBlur == null) {
+        localStorage.removeBlur = false;
+    }
+    if (localStorage.enableScrollbar == null) {
+        localStorage.enableScrollbar = false;
+    }
+    if (localStorage.blurLevel == null) {
+        localStorage.blurLevel = "50";
+    }
+
+
     if (localStorage.deleteBackground == "false") {
         document.getElementById("Body").style.backgroundImage = "url(assets/unnamed" + Math.floor(Math.random() * 5) + ".jpg)";
     }
