@@ -394,6 +394,8 @@
     </style>
 
     <script>
+
+
         var buttons = document.getElementsByTagName('button');
 
         Array.prototype.forEach.call(buttons, function(b){
@@ -419,9 +421,13 @@
         circle.classList.add('ripple');
         }
     
-        
+        if (localStorage.theme == null) {
+            localStorage.theme = "dark";
+        }
 
         function ready() {
+            changetheme();
+
             if (localStorage.theme == "Light") {
                 document.getElementById("theme").value = "Light";
                 changetheme();
