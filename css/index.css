@@ -57,11 +57,12 @@ body {
     /* background-image: url("../assets/unnamed2.jpg"); */
     /* background: #060713; */
     background-position: center;
-    background-size: cover;
+    /* background-size: 200vh; */
     background-attachment: fixed;
     user-select: none;
     overflow-x: hidden;
     text-wrap: nowrap;
+
     /* padding-bottom: 10px; */
     
 }
