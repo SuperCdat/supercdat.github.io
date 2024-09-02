@@ -81,6 +81,13 @@ function ready() {
             html[i].style.scrollbarWidth = "thin";
         }
     }
+
+    if (screen.height >= screen.width) {
+        document.getElementById("Body").style.backgroundSize = "200vh";
+    }
+    else {
+        document.getElementById("Body").style.backgroundSize = "cover";
+    }
     
 }
 

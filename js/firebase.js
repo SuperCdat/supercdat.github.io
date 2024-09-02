@@ -79,7 +79,7 @@ window.AddData = () => {
                     Platform : Platform,
                     DateCreated : CurrentDate,
                 }).then(() => {
-                    window.alert("Tạo tài khoản thành công!");
+                    alert("Tạo tài khoản thành công!");
                     document.getElementById("gotodscs").click();
 
                 }).catch(() => {
