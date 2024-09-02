@@ -39,6 +39,8 @@
             <div id="dscsHeader">
                 <a href="./index.html"><button id="backHome_btn"><span class="material-symbols-outlined">arrow_left_alt</span></button></a>
                 <button id="options_btn"><span class="material-symbols-outlined">settings</span></button>
+                <button id="account_btn"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">account_circle</span></button>
+
 
             </div>
             <div id="chat-container">
@@ -55,7 +57,7 @@
         
             </div>
             <div id="dscs_config">
-                <h2>Tùy Chọn (beta)</h2>
+                <h2>Tùy Chọn</h2>
                 Thanh Trượt :
                 <select name="turn_scrollbar" id="turn_scrollbar" style="width: 100px; background-color: rgb(6 7 19); border: 1px solid rgba(118, 185, 237, 1); color: white; height: 50px; outline: none; margin-top: 10px; margin-bottom: 10px; font-family: 'QuickSand'; border-radius: 4px;">
                     <option value="off">Tắt</option>
@@ -79,13 +81,39 @@
                 </select>
 
             </div>
+
+            <div id="account_config">
+                <h2>Tài Khoản (Thử Nghiệm)</h2>
+
+                <label for="avatar_input" id="upload_avatar" style="user-select: none; margin-top: 20px; margin-bottom: 5px;">
+                    <input type="file" name="avatar_input" id="avatar_input" hidden>
+                    <span id="undefined_avatar" class="material-symbols-outlined" style="margin: 42% auto; font-variation-settings: 'FILL' 1; display: block;">help</span>
+                    <div style="background-color: rgba(6, 7, 19, 0.5); width: 150px; height: 150px; border-radius: 10px; border: 1px solid #2E3C51; margin-top: -150px; display: flex;">
+                        <img id="avatar_img" src="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; border: none; display: none;">
+                    </div>
+                </label>
+                <span id="del_avatar" class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; width: 35px; height: 30px; border-radius: 30px; background-color: rgb(6 7 19); border: 1px solid #2E3C51; text-align: center; padding-top: 5px; margin-top: 20px; display: none;">delete_forever</span>
+                <h3 id="avatar_label">Avatar :</h3>
+                <progress id="uploader" value="0" max="100" style="width: 200px; margin-top: 10px; display: none;"></progress>
+
+                <div style="width:  calc(100% - 30px); max-width: 600px; height: 180px; background-color: rgba(6, 7, 19, 0.5); gap: 20px; display: flex; flex: 1; overflow-y: auto; border-radius: 4px; padding: 15px; justify-content: space-evenly;">
+                    <p>Đổi tên hiển thị :</p>
+                    <input type="text" placeholder="Tên hiển thị mới" style="height: 30px; border: none; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px; border-radius: 40px; width: calc(100% - 100px); height: 40px; outline: none; background-color: rgba(6, 7, 19, 0.6); border: 1px solid #2E3C51; font-size: 15px; color: white; font-family: QuickSand; backdrop-filter: blur(10px); min-width: 60px; max-width: 300px;">
+                    <button id="Save_account_change">Lưu</button>
+                </div>
+
+
+ 
+
+            </div>
         </div>
 
         <script type="module">
             // app.js
     
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-    import { getDatabase, remove, set, ref, push, onChildAdded, onChildRemoved } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+    import { getDatabase, remove, set, ref, push, get, child, onChildAdded, onChildRemoved } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
     
     // Firebase configuration
     const firebaseConfig = {
@@ -162,6 +190,20 @@
         }
     });
     
+    if (userName != "" && userName != null) {
+        get(child(ref(db), "Status/UserAvatars/" + userName)).then((snapshot)=>{
+
+            if (snapshot.exists()) {
+
+                document.getElementById("avatar_img").setAttribute("src", snapshot.val().avatarAddress);
+                document.getElementById("avatar_img").style.display = "block";
+                document.getElementById("undefined_avatar").style.opacity = 0;
+
+
+
+            }
+        });
+    }
     
     
     // Listen for new messages
@@ -177,7 +219,6 @@
             messageElement.style.backgroundColor = localStorage.your_boxcolor;
             messageElement.style.color = localStorage.your_color;
 
-
             messageElement.classList.add('user-message');
             messageElement.textContent = data.message;
 
@@ -188,19 +229,71 @@
             messageElement.style.color = localStorage.thier_color;
 
 
-            messageElement.textContent = data.unm + " : " + data.message;
-            messageElement.setAttribute("class", "their_messages");
+            if (data.uid != "" && data.uid != null) {
+                get(child(ref(db), "Status/UserAvatars/" + data.uid)).then((snapshot)=>{
 
+                    if (snapshot.exists()) {
+                        // const messageElementAvatar = document.createElement('div');
+                        // messageElementAvatar.setAttribute("id", "avatar-" + "mes-" + snapshot.key);
+                        // messageElement.appendChild(messageElementAvatar);
+                        // const messageElementAvatarImage = document.createElement('img');
+                        // messageElementAvatarImage.setAttribute("id", "image-avatar-" + "mes-" + snapshot.key)
+                        // messageElement.appendChild(messageElementAvatarImage);
+                        
+
+
+                        // messageElementAvatarImage.setAttribute("src", snapshot.val().avatarAddress);
+
+                        messageElement.textContent = data.message;
+
+
+                    }
+                    else {
+                        messageElement.textContent = data.unm + " : " + data.message;
+
+                    }
+                });
+            }
+
+
+
+            messageElement.setAttribute("class", "their_messages");
 
 
 
         }
 
         messagesList.appendChild(messageElement);
+
+
+        if (data.uid != "" && data.uid != null) {
+            get(child(ref(db), "Status/UserAvatars/" + data.uid)).then((snapshot)=>{
+
+                if (snapshot.exists()) {
+                    const messageElementAvatar = document.createElement('div');
+                    // messageElementAvatar.setAttribute("id", "avatar-" + "mes-" + snapshot.key);
+                    messageElement.appendChild(messageElementAvatar);
+                    const messageElementAvatarImage = document.createElement('img');
+                    // messageElementAvatarImage.setAttribute("id", "image-avatar-" + "mes-" + snapshot.key)
+                    messageElementAvatar.appendChild(messageElementAvatarImage);
+                    
+
+
+                    messageElementAvatarImage.setAttribute("src", snapshot.val().avatarAddress);
+
+
+
+                }
+            });
+        }
+
+
         if (document.getElementById("chat-box").scrollHeight - document.getElementById("chat-box").scrollTop - document.getElementById("chat-box").clientHeight < 100 || document.getElementById("toLatest").style.opacity == 0) {
             // $("#chat-box").animate({scrollTop: document.getElementById("chat-box").scrollHeight}, 500);
             document.getElementById("chat-box").scrollTop = document.getElementById("chat-box").scrollHeight;
 
+            document.getElementById("toLatest").style.opacity = 0;
+            document.getElementById("toLatest").style.bottom = "1px";
     
         }
         
@@ -271,6 +364,104 @@
         setTimeout(function () { document.getElementById("userTyping").style.display = "none"; }, 200);
     });
 
+    const storage = getStorage(app);
+    document.getElementById("avatar_input").addEventListener("change", () => {
+        const file = document.getElementById("avatar_input").files[0];
+        if (file && (getFileExtension(file.name) == "jpg" || getFileExtension(file.name) == "png" || getFileExtension(file.name) == "webp" || getFileExtension(file.name) == "jpeg" || getFileExtension(file.name) == "svg" || getFileExtension(file.name) == "jfif")) {
+
+
+
+            const storageRef = sRef(storage, 'UserAvatars/' + userName + "/" + "avatar");
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            document.getElementById("uploader").style.display = "block";
+
+            uploadTask.on('state_changed', 
+                    (snapshot) => {
+                        // Calculate upload progress
+
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        document.getElementById("uploader").setAttribute("value", progress);
+                    }, 
+                    (error) => {
+                        console.error("Upload failed: ", error);
+                    }, 
+                    () => {
+                        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+
+                            document.getElementById("uploader").style.display = "none";
+                            generate_avatar(downloadURL);
+
+                            function generate_avatar(url) {
+
+                                set(ref(db, "Status/UserAvatars/" + userName), { avatarStatus : "Uploaded", avatarAddress : url });
+
+                                document.getElementById("avatar_img").setAttribute("src", url);
+                                document.getElementById("avatar_img").style.display = "block";
+                                
+                                document.getElementById("undefined_avatar").style.opacity = 0;
+
+                                document.getElementById("avatar_label").textContent = "Avatar (Cần Khởi Động Lại Để Cập Nhật Toàn Bộ) :";
+
+                                is_AccountSetting();
+
+                            }
+                    });
+                }
+            );
+        }
+        else {
+            alert("Please select an image file.");
+        }
+
+        function getFileExtension(filename) {
+                var ext = /^.+\.([^.]+)$/.exec(filename);
+                return ext == null ? "" : ext[1];
+        }
+ 
+    });
+
+    let lastScroll = 0;
+    document.getElementById("chat-box").onscroll = function () {
+        let currentScroll = document.getElementById("chat-box").scrollTop || document.getElementById("chat-box").scrollTop;
+
+        if (currentScroll > 0 && lastScroll <= currentScroll){
+            lastScroll = currentScroll;
+            document.getElementById("toLatest").style.opacity = 0;
+            document.getElementById("toLatest").style.bottom = "1px";
+        } 
+        else {
+            lastScroll = currentScroll;
+            document.getElementById("toLatest").style.opacity = 1;
+            document.getElementById("toLatest").style.bottom = "81px";
+        }
+    }
+
+
+
+    document.getElementById("del_avatar").onclick = function () {
+        deleteObject(sRef(storage, 'UserAvatars/' + userName + "/" + "avatar"));
+        remove(ref(db, "Status/UserAvatars/" + userName));
+        document.getElementById("del_avatar").style.display = "none";
+        document.getElementById("avatar_img").removeAttribute("src");
+        document.getElementById("avatar_img").style.display = "none";
+        document.getElementById("undefined_avatar").style.opacity = 1;
+        document.getElementById("avatar_label").textContent = "Avatar (Cần Khởi Động Lại Để Cập Nhật Toàn Bộ) :";
+
+
+
+    }
+
+
+
+    // const dbRef = ref(db);
+    // let imgname;
+    // get(child(dbRef, "Datas/Users/" + userName)).then((snapshot)=>{imgname = snapshot.val().avatarFile});
+    // document.getElementById("avatar_img").setAttribute("src", getDownloadURL(storage, "UserAvatars/" + userName + imgname));
+    // document.getElementById("avatar_img").style.display = "block";
+
+
+
 
     
         </script>
@@ -291,6 +482,8 @@
             height: 100vh;
             margin: 0;
 
+            user-select: none;
+
             /* scrollbar-width: thin; */
 
             }
@@ -303,6 +496,8 @@
 
 
             #chat-container {
+                user-select: text;
+
             /* background-color: rgb(6 7 19); */
             /* border: 1px solid #ccc; */
             border-radius: 5px;
@@ -321,6 +516,27 @@
             }
 
             #dscs_config {
+            display: none;
+            /* background-color: rgb(6 7 19); */
+            /* border: 1px solid #ccc; */
+            border-radius: 5px;
+            width: 100%;
+            height: calc(100% - 30px);
+            flex-direction: column;
+
+            margin-left: auto;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            font-family: "QuickSand";
+            font-weight: 800;
+            text-wrap: wrap;
+
+            text-align: center;
+            align-items: center;
+            }
+
+            #account_config {
             display: none;
             /* background-color: rgb(6 7 19); */
             /* border: 1px solid #ccc; */
@@ -376,7 +592,30 @@
 
             text-wrap: wrap;
 
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 15px;
+
             animation: growup 0.2s;
+
+            }
+
+            #messages li div {
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+                border: 1px solid #2E3C51;
+
+                background-color: rgba(6, 7, 19, 0.5);
+
+            }
+            #messages li img {
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+                /* border: 1px solid #2E3C51; */
+
+                object-fit: cover;
 
             }
 
@@ -384,6 +623,8 @@
             /* background-color: #d1eaff; */
             margin-left: auto;
             text-align: right;
+
+            flex-direction: row;
 
             /* width: fit-content;
 
@@ -605,6 +846,30 @@
                 
             }
 
+            #account_btn {
+                color: white;
+                background-color: rgba(6, 7, 19, 0.5);
+                width: 50px;
+                height: 30px;
+                border: none;
+                border-radius: 30px;
+            }
+            #account_btn span {
+                margin-top: 2px;
+            }
+            #account_btn:active {
+                background-color: rgba(37, 38, 54, 0.5);
+                
+            }
+
+            #Save_account_change {
+                height: 30px; width: 60px; border-radius: 30px; border: 1px solid rgb(118 185 237); background-color: rgb(6 7 19); color: rgb(118, 185, 237); font-family: "QuickSand"; margin-top: 15px;
+            }
+            #Save_account_change:active {
+                background-color: rgb(118, 185, 237);
+                color: rgb(6 7 19);
+            }
+
             /* #div1 h2 {
                 top: 42%;
                 left: 50%;
@@ -663,9 +928,19 @@
                 localStorage.your_color = "black";
         }
 
+        if (screen.height >= screen.width) {
+            document.getElementById("Body").style.backgroundSize = "200vh";
+        }
+        else {
+            document.getElementById("Body").style.backgroundSize = "cover";
+        }
+
+
+
         function ready() {
 
             document.getElementById("dscs_config").style.display = "none";
+            document.getElementById("account_config").style.display = "none";
             document.getElementById("chat-container").style.display = "flex";
 
 
@@ -701,7 +976,7 @@
             is_Border();
 
             is_Config();
-
+            is_AccountSetting();
 
 
 
@@ -743,15 +1018,36 @@
 
                 if (document.getElementById("dscs_config").style.display == "none") {
                     document.getElementById("dscs_config").style.display = "flex";
+                    document.getElementById("account_config").style.display = "none";
                     document.getElementById("chat-container").style.display = "none";
 
                 }
                 else {
                     document.getElementById("dscs_config").style.display = "none";
+                    document.getElementById("account_config").style.display = "none";
                     document.getElementById("chat-container").style.display = "flex";
 
                 }
-            })
+            });
+            document.getElementById("account_btn").addEventListener("click", function () {
+
+                // console.log(document.getElementById("dscs_config").style.display);
+                // console.log(document.getElementById("chat-container").style.display);
+
+
+                if (document.getElementById("account_config").style.display == "none") {
+                    document.getElementById("dscs_config").style.display = "none";
+                    document.getElementById("account_config").style.display = "flex";
+                    document.getElementById("chat-container").style.display = "none";
+
+                }
+                else {
+                    document.getElementById("dscs_config").style.display = "none";
+                    document.getElementById("account_config").style.display = "none";
+                    document.getElementById("chat-container").style.display = "flex";
+
+                }
+                });
 
             document.getElementById("turn_scrollbar").addEventListener("change", function () {
 
@@ -909,6 +1205,21 @@
 
 
             });
+
+            function is_AccountSetting() {
+                setTimeout(function () {
+
+                    if (document.getElementById("avatar_img").getAttribute("src") != null && document.getElementById("avatar_img").getAttribute("src") != "") {
+                        document.getElementById("del_avatar").style.display = "block";
+
+                    }
+                }, 500);
+            }
+            
+
+
+
+
     </script>
 
 
