@@ -1,0 +1,100 @@
+@font-face {
+    font-family: "poppins_font";
+    src: url("../assets/Poppins-ExtraLight.ttf");
+}
+
+body {
+    overflow: hidden;
+    height: 100%;
+    /* background-image: url("../assets/unnamed2.jpg"); */
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    user-select: none;
+}
+#div1 {
+    font-family: "poppins_font";
+    color: white;
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    border-radius: 4px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: rgba(6, 7, 19, 0.5);
+    transition: 0.5s;
+    /* backdrop-filter: blur(25px); */
+    text-wrap: nowrap;
+}
+#tohome {
+    font-family: "poppins_font";
+    font-size: xx-large;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: white;
+    transition: 1s;
+}
+#tohome::before {
+    content: "<< ";
+    top: 50%;
+    left: calc(50% - 80px);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 1s;
+}
+#tohome:hover {
+    left: calc(50% + 10px);
+    transition: 1s;
+}
+#tohome:hover::before {
+    left: calc(50% - 70px);
+    opacity: 1;
+    transition: 1s;
+}
+#tohome:active {
+    left: 50%;
+    transition: 1s;
+}
+#tohome:active::before {
+    left: calc(50% - 75px);
+    opacity: 1;
+    transition: 1s;
+}
+
+#div1 h2 {
+    top: 42%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+#div1 h1 {
+    top: 48%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+#div1 h1 span::after {
+    position: fixed;
+    opacity: 0;
+}
+#div1 h1 span:hover::after {
+    background-color: rgba(0, 92, 116, 0.5);
+    margin-left: 15px;
+    opacity: 1;
+    content: "Maybe :))";
+    text-wrap: nowrap;
+    font-size: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 4px;
+    animation: maybefadein 0.5s;
+    /* color: white; */
+}
+@keyframes maybefadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
