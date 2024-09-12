@@ -10,10 +10,10 @@ function ready() {
         localStorage.deleteBackground = false;
     }
     if (localStorage.removeAnim == null) {
-        localStorage.removeAnim = false;
+        localStorage.removeAnim = true;
     }
     if (localStorage.removeBlur == null) {
-        localStorage.removeBlur = false;
+        localStorage.removeBlur = true;
     }
     if (localStorage.enableScrollbar == null) {
         localStorage.enableScrollbar = false;
@@ -39,7 +39,7 @@ function ready() {
     // }
 
     if (localStorage.deleteBackground == "false") {
-        document.getElementById("Body").style.backgroundImage = "url(assets/unnamed" + Math.floor(Math.random() * 5) + ".jpg)";
+        document.getElementById("Body").style.backgroundImage = "url(assets/unnamed" + Math.floor(Math.random() * 5) + ".webp)";
     }
     else {
         document.getElementById("Body").style.backgroundColor = "#10151D";
@@ -76,17 +76,22 @@ function ready() {
 
 
     if (localStorage.enableScrollbar == "true") {
-        let html = document.getElementsByTagName("html");
-        for (i = 0; i < html.length; i++) {
-            html[i].style.scrollbarWidth = "thin";
+        // let html = document.getElementsByTagName("html");
+        for (i of document.getElementsByTagName("html")) {
+            i.style.scrollbarWidth = "thin";
         }
     }
 
     if (screen.height >= screen.width) {
-        document.getElementById("Body").style.backgroundSize = "200vh";
+
+        document.getElementById("Body").style.backgroundSize = "auto " + window.innerHeight + "px";
+
+
     }
     else {
         document.getElementById("Body").style.backgroundSize = "cover";
+        document.getElementById("Body").style.backgroundPosition = "center";
+
     }
     
 }
@@ -179,59 +184,79 @@ function is_autolog_changed() {
 
 function is_blur() {
     if (localStorage.removeBlur == "true") {
-        for (i = 0; i < document.getElementsByClassName("div1").length; i++) {
-            document.getElementsByClassName("div1")[i].style.removeProperty("backdrop-filter");
+        for (i of document.getElementsByClassName("div1")) {
+            i.style.removeProperty("backdrop-filter");
         }
     }
     else {
-        for (i = 0; i < document.getElementsByClassName("div1").length; i++) {
-            document.getElementsByClassName("div1")[i].style.setProperty("backdrop-filter", "blur(" + localStorage.blurLevel + "px)");
+        for (i of document.getElementsByClassName("div1")) {
+            i.style.setProperty("backdrop-filter", "blur(" + localStorage.blurLevel + "px)");
         }
     }
 }
 
 function is_Border() {
     if (localStorage.deleteBackground == "false") {
-        for (i = 0; i < document.getElementsByClassName("div1").length; i++) {
-            document.getElementsByClassName("div1")[i].style.setProperty("border", "0");
+        for (i of document.getElementsByClassName("div1")) {
+            i.style.setProperty("border", "0");
         }
     }
     else {
-        for (i = 0; i < document.getElementsByClassName("div1").length; i++) {
-            document.getElementsByClassName("div1")[i].style.setProperty("border-top", "1px solid #2E3C51");
-            document.getElementsByClassName("div1")[i].style.setProperty("border-bottom", "1px solid #2E3C51");
+        for (i of document.getElementsByClassName("div1")) {
+            if (i.getAttribute("id") != "divMain") {
+                i.style.setProperty("border-top", "1px solid #2E3C51");
+                i.style.setProperty("border-bottom", "1px solid #2E3C51");
+            }
+        }
+        for (i of document.getElementsByClassName("c1")) {
+            i.style.setProperty("border-top", "1px solid #2E3C51");
+            i.style.setProperty("border-bottom", "1px solid #2E3C51");
 
         }
-        for (i = 0; i < document.getElementsByClassName("c1").length; i++) {
-            document.getElementsByClassName("c1")[i].style.setProperty("border-top", "1px solid #2E3C51");
-            document.getElementsByClassName("c1")[i].style.setProperty("border-bottom", "1px solid #2E3C51");
+        for (i of document.getElementsByClassName("c2")) {
+            i.style.setProperty("border-top", "1px solid #2E3C51");
+            i.style.setProperty("border-bottom", "1px solid #2E3C51");
 
         }
-        for (i = 0; i < document.getElementsByClassName("c2").length; i++) {
-            document.getElementsByClassName("c2")[i].style.setProperty("border-top", "1px solid #2E3C51");
-            document.getElementsByClassName("c2")[i].style.setProperty("border-bottom", "1px solid #2E3C51");
+        for (i of document.getElementsByClassName("c3")) {
+            i.style.setProperty("border-top", "1px solid #2E3C51");
+            i.style.setProperty("border-bottom", "1px solid #2E3C51");
 
         }
-        for (i = 0; i < document.getElementsByClassName("c3").length; i++) {
-            document.getElementsByClassName("c3")[i].style.setProperty("border-top", "1px solid #2E3C51");
-            document.getElementsByClassName("c3")[i].style.setProperty("border-bottom", "1px solid #2E3C51");
+        for (i of document.getElementsByClassName("c1border")) {
+            i.style.setProperty("border-top", "1px solid #2E3C51");
+            i.style.setProperty("border-bottom", "1px solid #2E3C51");
 
         }
-        for (i = 0; i < document.getElementsByClassName("c1border").length; i++) {
-            document.getElementsByClassName("c1border")[i].style.setProperty("border-top", "1px solid #2E3C51");
-            document.getElementsByClassName("c1border")[i].style.setProperty("border-bottom", "1px solid #2E3C51");
+        for (i of document.getElementsByClassName("Pages_")) {
+            i.style.setProperty("background-color", "#10151D");
+            i.style.setProperty("border", "1px solid #2E3C51");
 
         }
-        for (i = 0; i < document.getElementsByClassName("Pages_").length; i++) {
-            document.getElementsByClassName("Pages_")[i].style.setProperty("background-color", "#10151D");
-            document.getElementsByClassName("Pages_")[i].style.setProperty("border", "1px solid #2E3C51");
-
-        }
-        for (i = 0; i < document.getElementsByClassName("game_gallery").length; i++) {
-            document.getElementsByClassName("game_gallery")[i].style.setProperty("border-top", "1px solid #2E3C51");
-            document.getElementsByClassName("game_gallery")[i].style.setProperty("border-bottom", "1px solid #2E3C51");
+        for (i of document.getElementsByClassName("game_gallery")) {
+            i.style.setProperty("border-top", "1px solid #2E3C51");
+            i.style.setProperty("border-bottom", "1px solid #2E3C51");
 
 
         }
     }
+
+
 }
+
+document.getElementById("supercdat").onmouseenter = function () {
+    document.getElementById("removesupercdat").style.display = "block";
+}
+
+document.getElementById("supercdat").onmouseleave = function () {
+    setTimeout(() => {
+        document.getElementById("removesupercdat").style.display = "none";
+    }, 3000);
+
+}
+function removesupercdatclick() {
+    document.getElementById("supercdat").style.display = "none";
+    document.getElementById("removesupercdat").style.display = "none";
+}
+
+// localStorage.clear();

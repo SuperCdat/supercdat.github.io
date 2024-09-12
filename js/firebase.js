@@ -43,6 +43,20 @@ window.AddData = () => {
                 issue_text.textContent = "Chưa nhập tên hiển thị";
                 issue_text.style.display = "block";
             }
+            else if (Signname_Sign.value.toLowerCase().includes("đạt") || Signname_Sign.value.toLowerCase().includes("supercdat") || Signname_Sign.value.toLowerCase().includes("cdat") || Displayname_Sign.value.toLowerCase().includes("đạt") || Displayname_Sign.value.toLowerCase().includes("supercdat") || Displayname_Sign.value.toLowerCase().includes("cdat")) {
+                document.getElementById("issue_text").style.display = "none";
+                let a = prompt("Please Enter Key To Use This Name :");
+                if (a) {
+                    if (a != "005698500") {
+                        Signname_Sign.value = "";
+                        Displayname_Sign.value = "";
+                    }
+                }
+                else {
+                    Signname_Sign.value = "";
+                    Displayname_Sign.value = "";
+                }
+            }
             else if (Signpassword_Sign.value == "" || Signpassword_Again_Sign.value == "") {
                 let issue_text = document.getElementById("issue_text");
                 issue_text.textContent = "Chưa nhập mật khẩu";
@@ -136,7 +150,8 @@ window.LogIn = () => {
 
 window.Del_Sign_Cache = () => {
     localStorage.clear();
-    document.location.reload();
+    // document.location.reload();
+    document.location.href = "../";
 
     document.getElementById("del_success_symbol").style.opacity = 1;
     setTimeout(function() {

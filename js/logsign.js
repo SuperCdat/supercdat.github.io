@@ -10,7 +10,7 @@
 function readygo() {
 
     if (localStorage.deleteBackground == "false") {
-        document.getElementById("Body").style.backgroundImage = "url(assets/unnamed" + Math.floor(Math.random() * 5) + ".jpg)";
+        document.getElementById("Body").style.backgroundImage = "url(../assets/unnamed" + Math.floor(Math.random() * 5) + ".webp)";
     }
     else {
         document.getElementById("Body").style.backgroundColor = "#10151D";
@@ -23,8 +23,7 @@ function readygo() {
 }
 
 function LogtoSign_log() {
-    let div1 = document.getElementById("div1");
-    let body = document.getElementById("Body");
+    let div1 = document.getElementById("divMain");
 
     div1.style.animation = "LogtoSign_log 0.5s";
     setTimeout(function (){
@@ -46,7 +45,7 @@ function LogtoSign_sign() {
 }
 
 function SigntoLog_log() {
-    let div1 = document.getElementById("div1");
+    let div1 = document.getElementById("divMain");
     div1.style.display = "block";
     div1.style.animation = "SigntoLog_log 0.5s";
 }
@@ -71,6 +70,10 @@ function autolog() {
             // console.log(localStorage.Signname);
             let Signname = document.getElementById("Signname");
             let Signpassword = document.getElementById("Signpassword");
+
+            Signname.setAttribute("readonly", true);
+            Signpassword.setAttribute("readonly", true);
+
 
             Signname.value = localStorage.Signname;
             Signpassword.value = localStorage.Password;
@@ -101,10 +104,15 @@ function Signname_Enter() {
     });
 }
 function Signpassword_Enter() {
-    document.getElementById("Signpassword").addEventListener("keypress", function (ev) {
+    document.getElementById("Signpassword").addEventListener("keydown", function (ev) {
         if (ev.key == "Enter") {
             document.getElementById("continue_btn").click();
         }
+        else if (ev.key === "Backspace" && document.getElementById("Signpassword").value == "") {
+            document.getElementById("Signname").focus();
+
+        }
+
     });
 }
 
@@ -135,4 +143,18 @@ function Signpassword_Again_Sign_Enter() {
             document.getElementById("continue_btn_Sign").click();
         }
     });
+}
+
+function password_visible() {
+    let password = document.getElementById("Signpassword");
+    let password_visible = document.getElementById("password_visible");
+    if (password.type === "text") {
+        password.type = "password";
+        password_visible.textContent = "visibility_off";
+    }
+    else {
+        password.type = "text";
+        password_visible.textContent = "visibility";
+
+    }
 }

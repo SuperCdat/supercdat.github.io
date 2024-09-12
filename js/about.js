@@ -1,7 +1,7 @@
 function readygo() {
 
   if (localStorage.deleteBackground == "false") {
-    document.getElementById("Body").style.backgroundImage = "url(assets/unnamed" + Math.floor(Math.random() * 5) + ".jpg)";
+    document.getElementById("Body").style.backgroundImage = "url(../assets/unnamed" + Math.floor(Math.random() * 5) + ".webp)";
   }
   else {
       document.getElementById("Body").style.backgroundColor = "#10151D";
@@ -79,6 +79,9 @@ function imgclose() {
 
         document.getElementById("imgpopup").style.display = "none";
         document.getElementById("Body").style.overflow = "scroll";
+        document.getElementById("Body").style.scrollbarWidth = "0";
+        
+
         zoomElement = "";
 
     }, 200);
@@ -107,9 +110,24 @@ function imgshow(img, imgtitle, dllink) {
 
 
   mousedragElement(document.getElementById("aimgmainimg"));
-  touchdragElement(document.getElementById("aimgmainimg"));
+
+  touchdrag(document.getElementById("aimgmainimg"));
 
   imgcrnt = dllink;
+
+  $("#zoom_in").on("click", (e) => {
+    e.preventDefault();
+    if (zoomElement != "") {
+      zoomElement.style.scale = `${(zoom += 0.3)}`;
+    }
+  });
+
+  $("#zoom_out").on("click", (e) => {
+    e.preventDefault();
+    if (zoomElement != "" && zoom >= 0.5) {
+      zoomElement.style.scale = `${(zoom -= 0.3)}`;
+    }
+  });
 
 }
 
@@ -131,6 +149,7 @@ document.addEventListener("wheel", function (e) {
     }
   }
 });
+
 
 
 // Make the DIV element draggable:
@@ -189,48 +208,89 @@ function mousedragElement(elmnt) {
   }
 }
 
-function touchdragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").ontouchstart = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.ontouchstart = dragMouseDown;
 
-  }
+function touchdrag(element) {
+  let isDragging = false;
+  let offsetX = 0, offsetY = 0;
 
-  function dragMouseDown(e) {
-    e = e || window.event;
+  // For touch drag
+  $(element).on('touchstart', function (e) {
+
     e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.ontouchend = closeDragElement;
 
-    // call a function whenever the cursor moves:
-    document.ontouchmove = elementDrag;
-    document.getElementById("imgmainimg").style.cursor = "grabbing";
 
-  }
+    isDragging = true;
+    let touch = e.originalEvent.touches[0];
+    offsetX = touch.clientX - $(element).position().left - element.clientWidth/2;
+    offsetY = touch.clientY - $(element).position().top - element.clientHeight/2;
 
-  function elementDrag(e) {
-    e = e || window.event;
-    // e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
+    // console.log( touch.clientX );
+    // console.log( touch.clientY );
+    // console.log( $(element).position().left );
+    // console.log( $(element).position().top );
 
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.getElementById("imgmainimg").style.cursor = "grab";
-    document.ontouchend = null;
-    document.ontouchmove = null;
-  }
+
+  });
+
+  $(element).on('touchmove', function (e) {
+
+    if (isDragging) {
+      let touch = e.originalEvent.touches[0];
+      $(element).css({
+          left: touch.clientX - offsetX + 'px',
+          top: touch.clientY - offsetY + 'px'
+
+      });
+    }
+  }).on('touchend', function () {
+      isDragging = false;
+  });
 }
+
+
+
+
+
+
+// function touchdragElement(elmnt) {
+//   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+//   if (document.getElementById(elmnt.id + "header")) {
+//     // if present, the header is where you move the DIV from:
+//     document.getElementById(elmnt.id + "header").ontouchstart = dragMouseDown;
+//   } else {
+//     // otherwise, move the DIV from anywhere inside the DIV:
+//     elmnt.ontouchstart = dragMouseDown;
+
+//   }
+
+//   function dragMouseDown() {
+//     touch.preventDefault();
+//     // get the mouse cursor position at startup:
+//     pos3 = touch.clientX;
+//     pos4 = touch.clientY;
+//     document.ontouchend = closeDragElement;
+
+//     // call a function whenever the cursor moves:
+//     document.ontouchmove = elementDrag;
+
+//   }
+
+//   function elementDrag(touch) {
+//     touch = touch || window.event;
+//     // e.preventDefault();
+//     // calculate the new cursor position:
+//     pos1 = pos3 - touch.clientX;
+//     pos2 = pos4 - touch.clientY;
+//     pos3 = touch.clientX;
+//     pos4 = touch.clientY;
+//     // set the element's new position:
+//     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+//     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+//   }
+
+//   function closeDragElement() {
+//     // stop moving when mouse button is released:
+//     document.ontouchend = null;
+//     document.ontouchmove = null;
+//   }
+// }

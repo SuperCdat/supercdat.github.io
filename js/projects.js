@@ -1,7 +1,7 @@
 function readygo() {
 
     if (localStorage.deleteBackground == "false") {
-        document.getElementById("Body").style.backgroundImage = "url(assets/unnamed" + Math.floor(Math.random() * 5) + ".jpg)";
+        document.getElementById("Body").style.backgroundImage = "url(../assets/unnamed" + Math.floor(Math.random() * 5) + ".webp)";
     }
     else {
         document.getElementById("Body").style.backgroundColor = "#10151D";
