@@ -317,6 +317,7 @@
                     document.getElementById("context_menu").style.display = "block";
                     document.getElementById("context_menu").style.left = e.clientX - 55 + "px";
                     document.getElementById("context_menu").style.top = e.clientY - 55 + "px";
+                    document.getElementById("chat-box").style.overflowY = "hidden";
                     console.log();
                 }
             });
@@ -324,6 +325,7 @@
         });
         document.onclick = () => {
             document.getElementById("context_menu").style.display = "none";
+            document.getElementById("chat-box").style.overflowY = "scroll";
 
         }
         document.getElementById("chat-container").oncontextmenu = (e) => {
