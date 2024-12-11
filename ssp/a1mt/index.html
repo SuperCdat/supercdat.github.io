@@ -703,7 +703,7 @@
       }
 
 
-      if (snapshot.val().description) {
+      if (snapshot.val().description && snapshot.val().description != "none") {
         let description = document.createElement("h4");
         description.classList.add("imglistchildrentextboxdescription");
         description.style.margin = "0 0 0 0";
@@ -739,12 +739,12 @@
         
         document.querySelector("#imgviewerinfobox .imgviewerinfoboxtitle").innerText = "Tên : " + snapshot.val().title;
         document.querySelector("#imgviewerinfobox .imgviewerinfoboxpublisher").innerText = "Người làm : " + snapshot.val().publisher;
-        if (snapshot.val().material) {
+        if (snapshot.val().material && snapshot.val().material != "none") {
           document.querySelector("#imgviewerinfobox .imgviewerinfoboxmaterial").innerText = "Chất liệu : " + snapshot.val().material;
         } else {
           document.querySelector("#imgviewerinfobox .imgviewerinfoboxmaterial").innerText = "Chất liệu : Ko có";
         }
-        if (snapshot.val().description) {
+        if (snapshot.val().description && snapshot.val().description != "none") {
           document.querySelector("#imgviewerinfobox .imgviewerinfoboxdescription").innerText = "Mô tả : " + snapshot.val().description;
         } else {
           document.querySelector("#imgviewerinfobox .imgviewerinfoboxdescription").innerText = "Mô tả : Ko có";
@@ -776,6 +776,8 @@
                 dislikes : Number(document.getElementById("imgviewerdislike").innerText),
                 src : snapshot.val().src,
                 title : snapshot.val().title,
+                material : snapshot.val().material,
+                description : snapshot.val().description,
               });
             }
           } else {
@@ -790,6 +792,8 @@
                 publisher : snapshot.val().publisher,
                 src : snapshot.val().src,
                 title : snapshot.val().title,
+                material : snapshot.val().material,
+                description : snapshot.val().description,
               });
             }
           }
@@ -807,6 +811,8 @@
                 likes : document.getElementById("imgviewerlike").innerText,
                 src : snapshot.val().src,
                 title : snapshot.val().title,
+                material : snapshot.val().material,
+                description : snapshot.val().description,
               });
             }
 
@@ -822,6 +828,8 @@
                 likes : Number(document.getElementById("imgviewerlike").innerText),
                 src : snapshot.val().src,
                 title : snapshot.val().title,
+                material : snapshot.val().material,
+                description : snapshot.val().description,
               });
             }
           }
