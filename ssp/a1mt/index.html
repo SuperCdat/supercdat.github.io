@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="description" content="9A1 mĩ thuật">
+
+  <title>Gallery</title>
+  <link rel="shortcut icon" href="../../assets/wuaze/cdsuperatwuaze.svg" type="image/x-icon">
+  <link rel="apple-touch-icon" href="../../assets/cdsuperat wuaze.svg" />
+  <link rel="apple-touch-icon-precomposed" href="../../assets/cdsuperat wuaze.svg"/>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+  </style>
+
+</head>
+<body id="body">
+  <nav>
+    <div id="logoa1mtbox">
+      <a href="https://supercdat.github.io/" style="height: 80%;"><img src="../../assets/cdsuperat wuaze.svg" alt="" style="height: 100%;" draggable="false"></a>
+      <a href=""><h1 id="a1mt">A1MT</h1></a>
+
+    </div>
+    <div class="menu collapsed" id="menu" style="height: 100%; width: 100px; justify-content: center; display: flex; align-items: center;">
+      <span class="material-symbols-outlined">
+        menu
+        </span>
+    </div>
+  </nav>
+  <div class="workspace" id="workspace">
+    <div class="margintop"></div>
+    <h1 style="text-align: center;">Sản phẩm 9A1</h1>
+    <h2 class="Oklabel">Tất cả</h2>
+    <div id="imglist">
+      <!-- <div class="imglistheader"></div> -->
+      <svg class="container" viewBox="0 0 40 40" height="40" width="40">
+        <circle class="track" cx="20" cy="20" r="17.5" pathlength="100" stroke-width="5px" fill="none"/>
+        <circle class="car" cx="20" cy="20" r="17.5" pathlength="100" stroke-width="5px" fill="none"/>
+
+        <style>
+          body .container {
+            --uib-size: 40px;
+            --uib-color: black;
+            --uib-speed: 2s;
+            --uib-bg-opacity: 0;
+            height: var(--uib-size);
+            width: var(--uib-size);
+            transform-origin: center;
+            animation: rotate var(--uib-speed) linear infinite;
+            will-change: transform;
+            overflow: visible;
+            margin: 25vh auto;
+          }
+
+          body.dark .container {
+            --uib-color: white;
+
+          }
+        
+          .car {
+            fill: none;
+            stroke: var(--uib-color);
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            animation: stretch calc(var(--uib-speed) * 0.75) ease-in-out infinite;
+            will-change: stroke-dasharray, stroke-dashoffset;
+            transition: stroke 0.5s ease;
+          }
+        
+          .track {
+            fill: none;
+            stroke: var(--uib-color);
+            opacity: var(--uib-bg-opacity);
+            transition: stroke 0.5s ease;
+          }
+        
+          @keyframes rotate {
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        
+          @keyframes stretch {
+            0% {
+              stroke-dasharray: 0, 150;
+              stroke-dashoffset: 0;
+            }
+            50% {
+              stroke-dasharray: 75, 150;
+              stroke-dashoffset: -25;
+            }
+            100% {
+              stroke-dashoffset: -100;
+            }
+          }
+        </style>
+      </svg>
+      
+      
+    </div>
+    <div id="imgviewer" class="imgviewer">
+      <span id="imgviewerclose" class="material-symbols-outlined" style="position: fixed; width: fit-content; height: fit-content; user-select: none; font-size: 40px; color: white; right: 20px; top: 20px; z-index: 30; background-color: rgb(0, 0, 0); border-radius: 50%;">close</span>
+      <span id="imgviewerinfo" class="material-symbols-outlined" style="position: fixed; width: fit-content; height: fit-content; user-select: none; font-size: 40px; color: white; right: 70px; top: 20px; z-index: 30; border-radius: 50%; background-color: rgb(0, 0, 0);">more_horiz</span>
+      <div id="imgviewerinfobox" style="position: fixed; transform: translate(-50%, -50%); height: fit-content; display: flex; flex-direction: column; padding: 20px; justify-content: center; left: 50%; top: 40%; gap: 10px; border-radius: 15px; display: none;">
+        <h5 class="imgviewerinfoboxtitle"></h5>
+        <h5 class="imgviewerinfoboxpublisher"></h5>
+        <h5 class="imgviewerinfoboxmaterial"></h5>
+        <h5 class="imgviewerinfoboxdescription"></h5>
+      </div>
+      <img id="imgviewerimg" class="imgviewerimg" src="" alt="">
+
+      <div style="display: flex; width: 100vw; margin-top: auto; gap: 10px; justify-content: center; z-index: 1;">
+        <div id="imgviewerlike" style="margin: auto 0 10px 0; width: fit-content; max-width: 200px; height: fit-content; user-select: none; color: white; background-color: rgba(0, 0, 0, 0.6); border-radius: 5px; display: flex; flex-direction: column; padding: 5px; text-align: center; font-size: min(20px, 6vw);">
+          0
+        </div>
+        <div id="imgviewerlikebutton" style="margin: auto 0 10px 0; width: fit-content; max-width: 200px; height: fit-content; user-select: none; color: white; background-color: rgba(0, 0, 0, 0.6); border-radius: 5px; display: flex; flex-direction: column; padding: 5px; text-align: center; font-size: min(20px, 6vw);">
+          <span class="material-symbols-outlined" style="font-size: min(30px, 6vw); margin: 0 auto;">thumb_up</span>
+        </div>
+        <div id="imgviewerdislikebutton" style="margin: auto 0 10px 0; width: fit-content; max-width: 200px; height: fit-content; user-select: none; color: white; background-color: rgba(0, 0, 0, 0.6); border-radius: 5px; display: flex; flex-direction: column; padding: 5px; text-align: center; font-size: min(20px, 6vw);">
+          <span class="material-symbols-outlined" style="font-size: min(30px, 6vw); margin: 0 auto;">thumb_down</span>
+        </div>
+        <div id="imgviewerdislike" style="margin: auto 0 10px 0; width: fit-content; max-width: 200px; height: fit-content; user-select: none; color: white; background-color: rgba(0, 0, 0, 0.6); border-radius: 5px; display: flex; flex-direction: column; padding: 5px; text-align: center; font-size: min(20px, 6vw);">
+          0
+        </div>
+      </div>
+      <div style="display: flex; width: 100vw; gap: 10px; justify-content: center; z-index: 1;">
+        <div id="imgvieweropeninnew" style="margin: auto 0 10px 0; width: fit-content; max-width: 200px; height: fit-content; user-select: none; color: white; background-color: rgba(0, 0, 0, 0.6); border-radius: 5px; display: flex; flex-direction: column; padding: 5px; text-align: center; font-size: min(20px, 6vw);">
+          <span class="material-symbols-outlined" style="font-size: min(30px, 6vw); margin: 0 auto;">open_in_new</span>
+          Xem ảnh đầy đủ
+        </div>
+        <div id="imgviewercopylink" style="margin: auto 0 10px 0; width: fit-content; max-width: 200px; height: fit-content; user-select: none; color: white; background-color: rgba(0, 0, 0, 0.6); border-radius: 5px; display: flex; flex-direction: column; padding: 5px; text-align: center; font-size: min(20px, 6vw);">
+          <span class="material-symbols-outlined" style="font-size: min(30px, 6vw); margin: 0 auto;">code</span>
+          Sao chép liên kết
+        </div>
+      </div>
+
+
+      <div id="imgviewercopiedalert">
+        Đã sao chép ⨉
+      </div>
+    </div>
+  </div>
+  <div id="quickgallery" class="quickgallery">
+    <h1 style="margin: 100px auto 0 auto;">Kho Ảnh</h1>
+    <div id="quickgallerygallery" class="quickgallerygallery">
+      <svg class="container" viewBox="0 0 40 40" height="40" width="40">
+        <circle class="track" cx="20" cy="20" r="17.5" pathlength="100" stroke-width="5px" fill="none"/>
+        <circle class="car" cx="20" cy="20" r="17.5" pathlength="100" stroke-width="5px" fill="none"/>
+
+        <style>
+          body .container {
+            --uib-size: 40px;
+            --uib-color: black;
+            --uib-speed: 2s;
+            --uib-bg-opacity: 0;
+            height: var(--uib-size);
+            width: var(--uib-size);
+            transform-origin: center;
+            animation: rotate var(--uib-speed) linear infinite;
+            will-change: transform;
+            overflow: visible;
+            margin: 25vh auto;
+          }
+
+          body.dark .container {
+            --uib-color: white;
+
+          }
+        
+          .car {
+            fill: none;
+            stroke: var(--uib-color);
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            animation: stretch calc(var(--uib-speed) * 0.75) ease-in-out infinite;
+            will-change: stroke-dasharray, stroke-dashoffset;
+            transition: stroke 0.5s ease;
+          }
+        
+          .track {
+            fill: none;
+            stroke: var(--uib-color);
+            opacity: var(--uib-bg-opacity);
+            transition: stroke 0.5s ease;
+          }
+        
+          @keyframes rotate {
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        
+          @keyframes stretch {
+            0% {
+              stroke-dasharray: 0, 150;
+              stroke-dashoffset: 0;
+            }
+            50% {
+              stroke-dasharray: 75, 150;
+              stroke-dashoffset: -25;
+            }
+            100% {
+              stroke-dashoffset: -100;
+            }
+          }
+        </style>
+      </svg>
+    </div>
+  </div>
+  
+  <div class="listTree collapsed" id="listTree">
+    <div id="listTreebranch">
+      <div class="imglistchildrentextboxdetail" id="listTreebranchquickgallery" style="width: auto;">
+        Kho Ảnh
+      </div>
+      <div class="imglistchildrentextboxdetail" id="listTreebranchdark" style="width: auto; margin-top: 10px;">
+        Chế Độ Tối
+      </div>
+      <a href="https://supercdat.github.io/" class="imglistchildrentextboxdetail" style="width: auto; margin-top: 10px;">
+        Về Trang Chủ
+      </a>
+
+    </div>
+
+  </div>
+  <style>
+    @keyframes fadeshow {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+  <style>
+    body {
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      -webkit-tap-highlight-color: transparent;
+      font-family: "Roboto";
+      overflow: hidden;
+      color: black;
+      background-color: white;
+
+    }
+    body.dark {
+      color: white;
+      background-color: rgb(8, 10, 14);
+    }
+    body nav {
+      user-select: none;
+      position: fixed;
+      width: 100%;
+      height: 70px;
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: right;
+      z-index: 1;
+    }
+    body.dark nav {
+      background-color: rgba(8, 10, 14, 0.5);
+
+    }
+    body a {
+      text-decoration: none;
+      transition: color 0.2s ease-out;
+      color: black;
+    }
+    body.dark a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.2s ease-out;
+    }
+
+    #logoa1mtbox {
+      height: 100%;
+      width: 200px;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      margin-right: auto;
+    }
+
+    body .workspace {
+      visibility: visible;
+      opacity: 1;
+      /* background-color: aqua; */
+      width: 100vw;
+      min-width: calc(100vw - 200px);
+      position: unset;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow-y: auto;
+
+      scrollbar-width: thin;
+      transition: opacity 0.2s ease-out;
+    }
+    body.dark .workspace {
+      scrollbar-color: #C1C1C1 #080a0e;
+    }
+    .listTree {
+      /* background-color: orange; */
+      max-width: 200px;
+      width: 200px;
+      height: 100vh;
+      visibility: visible;
+      transition: 0.3s ease-out;
+    }
+
+    .listTree.collapsed {
+      width: 0;
+      max-width: 0;
+      transition: 0.2s ease-out;
+      visibility: hidden;
+
+    }
+
+    .listTree #listTreebranch {
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      padding: 10px;
+      display: flex;
+      visibility: visible;
+      flex: 1;
+      flex-direction: column;
+      text-wrap: nowrap;
+
+    }
+    .listTree.collapsed #listTreebranch {
+      display: none;
+    }
+
+    .margintop {
+      margin-top: 80px;
+    }
+
+    .Oklabel {
+      max-width: 800px;
+      width: calc(100% - 40px);
+      margin: 10px auto 0 auto;
+    }
+
+    body .imglistchildren {
+      max-width: 700px;
+      width: calc(100% - 40px);
+      border-radius: 20px;
+      margin: 10px auto;
+      height: 240px;
+      background-color: rgb(220, 255, 255);
+      display: flex;
+      align-items: center;
+      animation: fadeshow 0.2s ease-out;
+      transition: background-color 0.1s ease-out;
+
+      /* background-color: #F7F9FD; */
+    }
+    body .imglistchildren:active {
+      background-color: rgb(197, 255, 255);
+
+    }
+
+    body.dark .imglistchildren {
+      background-color: #303D55;
+    }
+    body.dark .imglistchildren:active {
+      background-color: #354660;
+    }
+
+    .imglistchildrenimg {
+      width: 400px;
+      height: 220px;
+      border-radius: 15px;
+      margin-left: 10px;
+    }
+
+    .imglistchildrentextbox {
+        display: flex;
+        width: max-content;
+        flex-direction: column;
+        margin-left: 20px;
+        height: calc(100% - 30px);
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-right: 20px;
+
+      }
+
+    #imglist {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+
+      /* flex-direction: column; */
+      flex-wrap: wrap;
+    }
+
+    body .menu span {
+      background-color: rgb(182, 233, 233);
+      padding-top: 8px;
+      width: 40px;
+      height: 32px;
+      text-align: center;
+      border-radius: 50%;
+
+      transition: 0.1s ease-out;
+    }
+    body.dark .menu span {
+      background-color: #303D55;
+      
+    }
+
+    body .menu.collapsed span {
+      background-color: transparent;
+
+      transition: 0.1s ease-out;
+      
+    }
+
+    .imgviewer {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      visibility: hidden;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      transition: 0.1s ease-out;
+      z-index: 2;
+    }
+    .imgviewer img {
+      position: fixed;
+      height: 70vh;
+      max-height: 500px;
+      width: fit-content;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .imgviewerimg {
+      display: block;
+    }
+    .imgviewerimg.hide {
+      display: none;
+    }
+    body #imgviewerinfobox {
+      background-color: white;
+      width: fit-content;
+    }
+    body.dark #imgviewerinfobox {
+      background-color: black;
+    }
+    #imgviewerinfobox h5 {
+      width: fit-content;
+      margin: 0 auto;
+      font-size: larger;
+    }
+    .imgviewer #imgviewercopiedalert {
+      width: fit-content;
+      height: fit-content;
+      padding: 5px 7px;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      right: 30px;
+      top: 70px;
+      color: white;
+      visibility: hidden;
+      transition: 0.1s ease-out;
+      opacity: 0;
+      user-select: none;
+    }
+
+    body .imglistchildrentextboxdetail {
+      background-color: rgb(160, 233, 233);
+      user-select: none;
+      border-radius: 5px;
+      width: 200px;
+      text-align: center;
+      padding: 3px 5px;
+      margin-top: auto;
+    }
+
+    body.dark .imglistchildrentextboxdetail {
+      background-color: rgba(138, 180, 248, 0.5);
+
+    }
+
+
+    .quickgallery {
+      width: 100vw;
+      min-width: calc(100vw - 200px);
+      height: 100vh;
+      scrollbar-width: thin;
+      visibility: hidden;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+      position: fixed;
+      /* background-color: orange; */
+    }
+
+    body .quickgallerygallery {
+      width: calc(100% - 20px);
+      height: fit-content;
+      display: flex;
+      scrollbar-width: thin;
+      flex-wrap: wrap;
+      overflow-y: auto;
+      gap: 10px;
+      padding: 10px;
+      justify-content: center;
+    }
+
+    body.dark .quickgallerygallery {
+      scrollbar-color: #C1C1C1 #080a0e;
+
+    }
+
+
+
+    
+    @media (max-width: 768px) {
+
+      body nav {
+        height: 50px;
+
+      }
+      #logoa1mtbox {
+        margin-left: 50px;
+        width: 80px;
+      }
+
+      body .workspace {
+        /* background-color: aqua; */
+        width: 100vw;
+      }
+      body .listTree {
+        background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+        backdrop-filter: blur(20px);
+        width: 100vw;
+        min-width: 100vw;
+        position: fixed;
+        height: calc(100vh - 50px);
+        top: 50px;
+        right: 0;
+        display: flex;
+        flex: 1;
+        opacity: 1;
+        transition: 0.3s ease-out;
+      }
+      body.dark .listTree {
+        background: linear-gradient(rgba(8, 10, 14, 0.5), rgba(8, 10, 14, 1), rgba(8, 10, 14, 1), rgba(8, 10, 14, 1), rgba(8, 10, 14, 1));
+      
+      }
+      body .listTree.collapsed {
+        opacity: 0;
+        min-width: 0;
+        transition: 0.3s ease-out;
+      }
+
+      .listTree #listTreebranch {
+        text-wrap: nowrap;
+      }
+      .listTree.collapsed #listTreebranch {
+        display: flex;
+        text-wrap: nowrap;
+      }
+      .listTree.collapsed #listTreebranch {
+        display: flex;
+      }
+
+      .margintop {
+        margin-top: 60px;        
+      }
+
+      body .imglistchildren {
+        padding: 10px;
+        width: calc(100% - 40px);
+        height: calc((100vw + 80px) /180 *101);
+        background-color: rgb(220, 255, 255);
+
+        flex-direction: column;
+        align-items: unset;
+
+      }
+
+      .imglistchildrenimg {
+        width: 100%;
+        height: calc(100vw /180 *101);
+        margin-left: 0;
+
+      }
+
+      .imglistchildrentextbox {
+        margin-left: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+        width: 100%;
+
+        height: fit-content;
+      }
+
+      .imgviewer img {
+        width: 90vw;
+        height: fit-content;
+        max-height: unset;
+      }
+
+      body #imgviewerinfobox {
+        background-color: white;
+        width: 100vw;
+      }
+
+      body .imglistchildrentextboxdetail {
+        margin-top: 15px;
+        width: auto;
+      }
+
+      .imglistchildrentextboxmaterial {
+        display: none;
+      }
+      .imglistchildrentextboxdescription {
+        display: none;
+      }
+
+    }
+  </style>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getDatabase , onChildAdded , ref , set } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAp_XPhktCmOo4OWYEwDFm4wxz36AU_w-E",
+      authDomain: "neww-85685.firebaseapp.com",
+      databaseURL: "https://neww-85685-default-rtdb.firebaseio.com",
+      projectId: "neww-85685",
+      storageBucket: "neww-85685.firebasestorage.app",
+      messagingSenderId: "1092598028896",
+      appId: "1:1092598028896:web:4eb807ea2c03c9eedd0105"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const dbRef = ref(db, "/WorkSpace/a1mt");
+
+
+    onChildAdded(dbRef, (snapshot) => {
+
+      let imglistchildren = document.createElement("div");
+      imglistchildren.setAttribute("class", "imglistchildren");
+      let img = document.createElement("div");
+      img.setAttribute("class", "imglistchildrenimg");
+      img.style.backgroundImage = "url(" + snapshot.val().src + ")";
+      img.style.backgroundSize = "cover";
+      img.style.backgroundPosition = "center center";
+      imglistchildren.appendChild(img);
+      imglistchildren.setAttribute("id", snapshot.val().title);
+      imglistchildren.setAttribute("appimg", snapshot.val().src);
+      imglistchildren.setAttribute("draggable", false);
+
+
+      let imglistchildrentextbox = document.createElement("div");
+      imglistchildrentextbox.setAttribute("class", "imglistchildrentextbox");
+      imglistchildren.appendChild(imglistchildrentextbox);
+      // imglistchildrentextbox.style.padding = "5px";
+
+      let title = document.createElement("h1");
+      title.innerText = snapshot.val().title;
+      title.style.margin = "5px 0 0 0";
+      title.style.fontSize = "min(30px, 8vw)";
+      imglistchildrentextbox.appendChild(title);
+
+      let publisher = document.createElement("h3");
+      publisher.style.margin = "0";
+      publisher.innerText = "bởi " + snapshot.val().publisher;
+      publisher.style.fontSize = "min(20px, 6vw)";
+      imglistchildrentextbox.appendChild(publisher);
+
+      if (snapshot.val().material && snapshot.val().material != "none") {
+        let material = document.createElement("h4");
+        material.classList.add("imglistchildrentextboxmaterial");
+        material.style.margin = "15px 0 0 0";
+        material.innerText = "Chất liệu:  " + snapshot.val().material;
+        material.style.fontSize = "min(15px, 5vw)";
+        imglistchildrentextbox.appendChild(material);
+      }
+
+
+      if (snapshot.val().description) {
+        let description = document.createElement("h4");
+        description.classList.add("imglistchildrentextboxdescription");
+        description.style.margin = "0 0 0 0";
+        description.innerText = "Mô tả: " + snapshot.val().description;
+        description.style.fontSize = "min(15px, 5vw)";
+        imglistchildrentextbox.appendChild(description);
+      }
+
+
+      let detail = document.createElement("div");
+      detail.classList.add("imglistchildrentextboxdetail");
+      detail.innerText = "Xem Chi Tiết →";
+      imglistchildrentextbox.appendChild(detail);
+
+
+      if (document.querySelector("#imglist .container")) {
+        document.getElementById("imglist").innerHTML = "";
+      }
+
+      if (Math.floor(Math.random() * 100) %2 == 0) {
+        document.getElementById("imglist").appendChild(imglistchildren);
+      } else {
+        document.getElementById("imglist").insertBefore(imglistchildren, document.getElementById("imglist").children[0]);
+      }
+
+      let livelikes = snapshot.val().likes;
+      let livedislikes = snapshot.val().dislikes;
+
+      imglistchildren.onclick = () => {      
+        document.getElementById("imgviewer").style.visibility = "visible";
+        document.getElementById("imgviewer").style.opacity = "1";
+        document.getElementById("imgviewerimg").setAttribute("src", imglistchildren.getAttribute("appimg"));
+        
+        document.querySelector("#imgviewerinfobox .imgviewerinfoboxtitle").innerText = "Tên : " + snapshot.val().title;
+        document.querySelector("#imgviewerinfobox .imgviewerinfoboxpublisher").innerText = "Người làm : " + snapshot.val().publisher;
+        if (snapshot.val().material) {
+          document.querySelector("#imgviewerinfobox .imgviewerinfoboxmaterial").innerText = "Chất liệu : " + snapshot.val().material;
+        } else {
+          document.querySelector("#imgviewerinfobox .imgviewerinfoboxmaterial").innerText = "Chất liệu : Ko có";
+        }
+        if (snapshot.val().description) {
+          document.querySelector("#imgviewerinfobox .imgviewerinfoboxdescription").innerText = "Mô tả : " + snapshot.val().description;
+        } else {
+          document.querySelector("#imgviewerinfobox .imgviewerinfoboxdescription").innerText = "Mô tả : Ko có";
+        }
+
+
+        if (livelikes) {
+          document.getElementById("imgviewerlike").innerText = livelikes;
+        } else {
+          document.getElementById("imgviewerlike").innerText = "0";
+
+        }
+        if (livedislikes) {
+          document.getElementById("imgviewerdislike").innerText = livedislikes;
+        } else {
+          document.getElementById("imgviewerdislike").innerText = "0";
+
+        }
+        document.getElementById("imgviewerlikebutton").onclick = () => {
+          if (livelikes) {
+            if (!localStorage["liked" + snapshot.val().title]) {
+              localStorage["liked" + snapshot.val().title] = "liked";
+              livelikes = Number(livelikes) + 1;
+              document.getElementById("imgviewerlike").innerText = livelikes;
+              set(ref(db, "/WorkSpace/a1mt/" + snapshot.val().n), {
+                likes : Number(document.getElementById("imgviewerlike").innerText),
+                n : snapshot.val().n,
+                publisher : snapshot.val().publisher,
+                dislikes : Number(document.getElementById("imgviewerdislike").innerText),
+                src : snapshot.val().src,
+                title : snapshot.val().title,
+              });
+            }
+          } else {
+            if (!localStorage["liked" + snapshot.val().title]) {
+              localStorage["liked" + snapshot.val().title] = "liked";
+              livelikes = 1;
+              document.getElementById("imgviewerlike").innerText = 1;
+              set(ref(db, "/WorkSpace/a1mt/" + snapshot.val().n), {
+                likes : 1,
+                dislikes : Number(document.getElementById("imgviewerdislike").innerText),
+                n : snapshot.val().n,
+                publisher : snapshot.val().publisher,
+                src : snapshot.val().src,
+                title : snapshot.val().title,
+              });
+            }
+          }
+        }
+        document.getElementById("imgviewerdislikebutton").onclick = () => {
+          if (livedislikes) {
+            if (!localStorage["disliked" + snapshot.val().title]) {
+              localStorage["disliked" + snapshot.val().title] = "disliked";
+              livedislikes = Number(livedislikes) + 1;
+              document.getElementById("imgviewerdislike").innerText = livedislikes;
+              set(ref(db, "/WorkSpace/a1mt/" + snapshot.val().n), {
+                dislikes : Number(document.getElementById("imgviewerdislike").innerText),
+                n : snapshot.val().n,
+                publisher : snapshot.val().publisher,
+                likes : document.getElementById("imgviewerlike").innerText,
+                src : snapshot.val().src,
+                title : snapshot.val().title,
+              });
+            }
+
+          } else {
+            if (!localStorage["disliked" + snapshot.val().title]) {
+              localStorage["disliked" + snapshot.val().title] = "disliked";
+              livedislikes = 1;
+              document.getElementById("imgviewerdislike").innerText = 1;
+              set(ref(db, "/WorkSpace/a1mt/" + snapshot.val().n), {
+                dislikes : 1,
+                n : snapshot.val().n,
+                publisher : snapshot.val().publisher,
+                likes : Number(document.getElementById("imgviewerlike").innerText),
+                src : snapshot.val().src,
+                title : snapshot.val().title,
+              });
+            }
+          }
+
+        }
+
+      }
+
+
+    });
+
+
+    document.getElementById("listTreebranchquickgallery").onclick = () =>  {
+      window.listTreebranchquickgalleryonclick();
+      if (!document.querySelector("#quickgallerygallery img")) {
+        onChildAdded(dbRef, (snapshot) => {
+          if (document.querySelector("#quickgallerygallery .container")) {
+            document.getElementById("quickgallerygallery").innerHTML = "";
+          }
+
+          let img = document.createElement("img");
+          img.setAttribute("src", snapshot.val().src);
+          img.style.width = "fit-content";
+          img.style.height = "fit-content";
+          img.style.maxHeight = "200px";
+          img.style.maxWidth = "100vw";
+          if (Math.floor(Math.random() * 100) %2 == 0) {
+            document.getElementById("quickgallerygallery").appendChild(img);
+          } else {
+            document.getElementById("quickgallerygallery").insertBefore(img, document.getElementById("quickgallerygallery").children[0]);
+          }
+
+          img.onclick = () => {
+            window.open(img.getAttribute("src"), "_blank");
+          }
+        });
+      }
+    }
+
+
+  </script>
+
+  <script>
+    document.getElementById("menu").onclick = () => {
+      document.getElementById("listTree").classList.toggle("collapsed");
+      document.getElementById("menu").classList.toggle("collapsed");
+
+    }
+
+    if (window.innerWidth >= 768) {
+      document.getElementById("menu").click();
+
+    }
+
+    document.getElementById("imgviewerclose").onclick = () => {
+      document.getElementById("imgviewer").style.visibility = "hidden";
+      document.getElementById("imgviewer").style.opacity = "0";
+
+    }
+    document.getElementById("imgviewerinfo").onclick = () => {
+      document.getElementById("imgviewerimg").classList.toggle("hide");
+      if (document.getElementById("imgviewerinfobox").style.display == "none") {
+        document.getElementById("imgviewerinfobox").style.display = "block";
+      } else {
+        document.getElementById("imgviewerinfobox").style.display = "none";
+      }
+    }
+
+    document.getElementById("imgvieweropeninnew").onclick = () => {
+      window.open(document.getElementById("imgviewerimg").getAttribute("src"), "_blank");
+    }
+
+    document.getElementById("imgviewercopylink").onclick = () => {
+      navigator.clipboard.writeText(document.getElementById("imgviewerimg").getAttribute("src"));
+      document.getElementById("imgviewercopiedalert").style.visibility = "visible";
+      document.getElementById("imgviewercopiedalert").style.opacity = "1";
+      setTimeout(() => {
+        document.getElementById("imgviewercopiedalert").click();
+      }, 3000);
+    }
+    document.getElementById("imgviewercopiedalert").onclick = () => {
+      document.getElementById("imgviewercopiedalert").style.visibility = "hidden";
+      document.getElementById("imgviewercopiedalert").style.opacity = "0";
+    }
+    
+    function listTreebranchquickgalleryonclick() {
+      if (document.getElementById("listTreebranchquickgallery").innerText == "Kho Ảnh") {
+        document.getElementById("workspace").style.opacity = 0;
+        document.getElementById("workspace").style.visibility = "hidden";
+        document.getElementById("workspace").style.position = "fixed";
+        document.getElementById("quickgallery").style.opacity = 1;
+        document.getElementById("quickgallery").style.visibility = "visible";
+        document.getElementById("quickgallery").style.position = "unset";
+        document.getElementById("listTreebranchquickgallery").innerText = "A1MT";
+
+      } else {
+        document.getElementById("quickgallery").style.opacity = 0;
+        document.getElementById("quickgallery").style.visibility = "hidden";
+        document.getElementById("quickgallery").style.position = "fixed";
+        document.getElementById("workspace").style.opacity = 1;
+        document.getElementById("workspace").style.visibility = "visible";
+        document.getElementById("workspace").style.position = "unset";
+        document.getElementById("listTreebranchquickgallery").innerText = "Kho Ảnh";
+      }
+
+    }
+
+
+    document.getElementById("listTreebranchdark").onclick = () => {
+      document.getElementById("body").classList.toggle("dark");
+      if (localStorage.dark === "true") {
+        localStorage.dark = false;
+      } else {
+        localStorage.dark = true;
+      }
+    }
+    if (localStorage.dark === "true") {
+      document.getElementById("body").classList.toggle("dark");
+    }
+
+
+
+  </script>
+</body>
+</html>
