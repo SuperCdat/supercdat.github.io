@@ -16,8 +16,6 @@
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
   </style>
 
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
 </head>
 <body id="body" class="body">
   <span class="material-symbols-outlined" style="font-size: 20px; position: fixed; left: 10px; top: 10px; padding: 5px 20px; border-radius: 500px; z-index: 2;" id="toggledarklight">
@@ -34,6 +32,9 @@
   </div>
 
   <style>
+    html {
+      overflow: hidden;
+    }
     body {
       -webkit-tap-highlight-color: transparent;
       color: black;
@@ -149,6 +150,7 @@
       height: 190px;
       border-radius: 10px;
       padding: 10px;
+      scrollbar-width: thin;
 
     }
     body.dark .mainspace .div textarea {
