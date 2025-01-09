@@ -198,7 +198,12 @@
 
     onChildAdded(dbRef, (snapshot) => {
       if (!document.getElementById("mainspacediv-" + snapshot.key)) {
-        addElement(snapshot.val().td, snapshot.val().ts, snapshot.val().aw, snapshot.val().ah, snapshot.val().dp, snapshot.val().dl, snapshot.val().dt, snapshot.val().ab, snapshot.key)
+        if (snapshot.val().ab) {
+          addElement(snapshot.val().td, snapshot.val().ts, snapshot.val().aw, snapshot.val().ah, snapshot.val().dp, snapshot.val().dl, snapshot.val().dt, snapshot.val().ab, snapshot.key)
+        } else {
+          addElement(snapshot.val().td, snapshot.val().ts, snapshot.val().aw, snapshot.val().ah, snapshot.val().dp, snapshot.val().dl, snapshot.val().dt, "", snapshot.key)
+
+        }
       }
     })
 
@@ -237,16 +242,14 @@
       grab.style.textAlign = "center"
       grab.style.userSelect = "none"
       actiondiv.appendChild(grab)
-      if (ab != "nod") {
-        let del = document.createElement("p")
-        del.innerHTML = "&#128465;"
-        del.style.width = "30px"
-        del.style.height = "fit-content"
-        del.style.margin = "0px auto 5px auto"
-        del.style.textAlign = "center"
-        del.style.userSelect = "none"
-        actiondiv.appendChild(del)
-      }
+      let del = document.createElement("p")
+      del.innerHTML = "&#128465;"
+      del.style.width = "30px"
+      del.style.height = "fit-content"
+      del.style.margin = "0px auto 5px auto"
+      del.style.textAlign = "center"
+      del.style.userSelect = "none"
+      actiondiv.appendChild(del)
       div.appendChild(textarea)
       div.appendChild(actiondiv)
       div.draggable = false
@@ -314,6 +317,11 @@
         }
 
       }
+
+      if (ab == "nod") {
+        actiondiv.removeChild(del)
+      }
+
 
 
     }
