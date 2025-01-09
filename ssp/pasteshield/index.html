@@ -198,7 +198,7 @@
 
     onChildAdded(dbRef, (snapshot) => {
       if (!document.getElementById("mainspacediv-" + snapshot.key)) {
-        addElement(snapshot.val().td, snapshot.val().ts, snapshot.val().aw, snapshot.val().ah, snapshot.val().dp, snapshot.val().dl, snapshot.val().dt, snapshot.key)
+        addElement(snapshot.val().td, snapshot.val().ts, snapshot.val().aw, snapshot.val().ah, snapshot.val().dp, snapshot.val().dl, snapshot.val().dt, snapshot.val().ab, snapshot.key)
       }
     })
 
@@ -213,10 +213,10 @@
     })
 
     document.getElementById("add").onclick = () => {
-      addElement("", "20", 190, 190, "", "", "", Math.floor(Math.random() *100000) + Math.floor(Math.random() *100000) + Math.floor(Math.random() *100000))
+      addElement("", "20", 190, 190, "", "", "", "", Math.floor(Math.random() *100000) + Math.floor(Math.random() *100000) + Math.floor(Math.random() *100000))
     }
 
-    function addElement(textdata, textsize, areawidth, areaheight, divposition, divleft, divtop, n) {
+    function addElement(textdata, textsize, areawidth, areaheight, divposition, divleft, divtop, ab, n) {
 
       let div = document.createElement("div")
       let textarea = document.createElement("textarea")
@@ -237,14 +237,16 @@
       grab.style.textAlign = "center"
       grab.style.userSelect = "none"
       actiondiv.appendChild(grab)
-      let del = document.createElement("p")
-      del.innerHTML = "&#128465;"
-      del.style.width = "30px"
-      del.style.height = "fit-content"
-      del.style.margin = "0px auto 5px auto"
-      del.style.textAlign = "center"
-      del.style.userSelect = "none"
-      actiondiv.appendChild(del)
+      if (ab != "nod") {
+        let del = document.createElement("p")
+        del.innerHTML = "&#128465;"
+        del.style.width = "30px"
+        del.style.height = "fit-content"
+        del.style.margin = "0px auto 5px auto"
+        del.style.textAlign = "center"
+        del.style.userSelect = "none"
+        actiondiv.appendChild(del)
+      }
       div.appendChild(textarea)
       div.appendChild(actiondiv)
       div.draggable = false
