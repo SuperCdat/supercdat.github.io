@@ -12,9 +12,7 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-  </style>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 </head>
 <body id="body" class="body">
@@ -98,6 +96,7 @@
       flex: 1;
       scrollbar-width: thin;
       scrollbar-color: white transparent;
+
       gap: 10px;
       position: relative;
       overflow: auto;
@@ -123,7 +122,7 @@
 
     body .mainspace .div {
       animation: fadein 0.1s ease-out;
-      display: flex;
+      /* display: flex; */
       width: fit-content;
       height: fit-content;
       /* background-color: rgba(123, 213, 255, 1); */
@@ -140,45 +139,111 @@
       background-color: #0F0F0F;
     }
 
-    body .mainspace .div textarea {
+    body .mainspace .div .padder textarea {
+      transition: opacity 0.2s ease-out, border 0.2s ease-out, padding 0.2s ease-out;
       margin: 0 auto;
-      min-width: 140px;
-      min-height: 140px;
+      min-width: 100px;
+      min-height: 100px;
       background-color: white;
       color: black;
       width: 190px;
       height: 190px;
       border-radius: 10px;
       padding: 10px;
+      opacity: 1;
       scrollbar-width: thin;
-
+      font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+      scrollbar-color: black transparent;
     }
-    body.dark .mainspace .div textarea {
+    body.dark .mainspace .div .padder textarea {
       background-color: #080a0e;
       color: white;
+      scrollbar-color: white transparent;
+    }
+    body .mainspace .div .padder textarea.collapsed {
+      transition: opacity 0s, border 0.2s ease-out, padding 0.2s ease-out;
+      min-width: 0;
+      min-height: 0;
+      max-height: 0;
+      padding: 0;
+      border: 0;
+      max-width: 0;
+      opacity: 0;
+      width: 0;
+      height: 0;
     }
 
-    body .mainspace .div .actiondiv {
+    body .mainspace .div .padder .actiondiv {
       width: 30px;
-      height: fit-content;
+      height: 1;
       margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
+      justify-content: start;
+      /* flex-wrap: wrap; */
       font-size: 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
       font-weight: 500;
+      flex-direction: column;
       /* background-color: rgba(123, 213, 255, 0.8); */
       border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      background-color: unset;
+
 
     }
     /* body.dark .mainspace .div .actiondiv {
       background-color: rgba(138, 180, 248, 0.8);
     } */
 
+    body .mainspace .div .padder {
+      width: fit-content;
+      height: fit-content;
+      background-color: unset;
+      display: flex;
+      /* pointer-events: none; */
+    }
+
+    body .mainspace .div .padder .actiondiv .grab {
+      width: 30px;
+      height: fit-content;
+      margin: 0 auto;
+      padding-bottom: 4px;
+      text-align: center;
+      user-select: none;
+      background-color: unset;
+    }
+    body .mainspace .div .padder .actiondiv .del {
+      width: 30px;
+      height: fit-content;
+      margin: 0 auto;
+      text-align: center;
+      user-select: none;
+      background-color: unset;
+    }
+
+    body .mainspace .div .padder .actiondiv .expandcollapse {
+      width: 27px;
+      height: fit-content;
+      margin: auto auto 2.5px auto;
+      /* border-radius: 8.8px; */
+      background-color: unset;
+      text-align: center;
+      user-select: none;
+      backdrop-filter: none;
+      background-color: unset;
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 350,
+      'GRAD' 0,
+      'opsz' 24
+    }
 
   </style>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { getDatabase , onChildAdded , onChildRemoved , ref , set , remove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+    import { getDatabase , onChildAdded , onChildRemoved , ref , remove , update } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
 
 
     const firebaseConfig = {
@@ -196,72 +261,77 @@
 
     const dbRef = ref(db, "/WorkSpace/pasteshield")
 
+    let gotShields = []
     onChildAdded(dbRef, (snapshot) => {
       if (!document.getElementById("mainspacediv-" + snapshot.key)) {
         if (snapshot.val().ab) {
-          addElement(snapshot.val().td, snapshot.val().ts, snapshot.val().aw, snapshot.val().ah, snapshot.val().dp, snapshot.val().dl, snapshot.val().dt, snapshot.val().ab, snapshot.key)
+          if (!snapshot.val().ab.includes("deleted")) {
+            addElement(snapshot.val().td, snapshot.val().ts, snapshot.val().aw, snapshot.val().ah, snapshot.val().dp, snapshot.val().dl, snapshot.val().dt, snapshot.val().ab, snapshot.key)
+            gotShields.push(snapshot.key)
+          }
         } else {
           addElement(snapshot.val().td, snapshot.val().ts, snapshot.val().aw, snapshot.val().ah, snapshot.val().dp, snapshot.val().dl, snapshot.val().dt, "", snapshot.key)
+          gotShields.push(snapshot.key)
 
         }
       }
     })
 
-    let canremovelocally = true
-    onChildRemoved(dbRef, (snapshot) => {
-      canremovelocally = false
-      document.getElementById("mainspacediv-" + snapshot.key).style.animation = "fadeout 0.1s ease-out"
-      setTimeout(() => {
-        document.getElementById("mainspace").removeChild(document.getElementById("mainspacediv-" + snapshot.key))
-        canremovelocally = true
-      }, 100)
-    })
+    // let canremovelocally = true
+    // onChildRemoved(dbRef, (snapshot) => {
+    //   canremovelocally = false
+    //   document.getElementById("mainspacediv-" + snapshot.key).style.animation = "fadeout 0.1s ease-out"
+    //   setTimeout(() => {
+    //     document.getElementById("mainspace").removeChild(document.getElementById("mainspacediv-" + snapshot.key))
+    //     canremovelocally = true
+    //   }, 100)
+    // })
 
     document.getElementById("add").onclick = () => {
-      addElement("", "20", 190, 190, "", "", "", "", Math.floor(Math.random() *100000) + Math.floor(Math.random() *100000) + Math.floor(Math.random() *100000))
+      addElement("", "15", 190, 190, "", "", "", "", Math.floor(Math.random() *1000000000).toString() + Math.floor(Math.random() *1000000000).toString() + Math.floor(Math.random() *1000000000).toString())
     }
 
     function addElement(textdata, textsize, areawidth, areaheight, divposition, divleft, divtop, ab, n) {
 
       let div = document.createElement("div")
+      let padder = document.createElement("div")
+      padder.classList.add("padder")
       let textarea = document.createElement("textarea")
       textarea.value = textdata
       textarea.style.fontSize = textsize + "px"
       textarea.style.width = areawidth + "px"
       textarea.style.height = areaheight + "px"
       div.style.position = divposition
-      div.style.left = divleft + "px"
-      div.style.top = divtop + "px"
       let actiondiv = document.createElement("div")
       actiondiv.classList.add("actiondiv")
       let grab = document.createElement("p")
+      grab.classList.add("grab")
       grab.innerHTML = "&#9776;"
-      grab.style.width = "30px"
-      grab.style.height = "fit-content"
-      grab.style.margin = "0px auto 5px auto"
-      grab.style.textAlign = "center"
-      grab.style.userSelect = "none"
       actiondiv.appendChild(grab)
       let del = document.createElement("p")
+      del.classList.add("del")
       del.innerHTML = "&#128465;"
-      del.style.width = "30px"
-      del.style.height = "fit-content"
-      del.style.margin = "0px auto 5px auto"
-      del.style.textAlign = "center"
-      del.style.userSelect = "none"
       actiondiv.appendChild(del)
-      div.appendChild(textarea)
-      div.appendChild(actiondiv)
+      let expandcollapse = document.createElement("span")
+      expandcollapse.classList.add("expandcollapse")
+      expandcollapse.classList.add("material-symbols-outlined")
+      expandcollapse.innerHTML = "keyboard_arrow_up"
+      actiondiv.appendChild(expandcollapse)
+      padder.appendChild(textarea)
+      padder.appendChild(actiondiv)
+      div.appendChild(padder)
       div.draggable = false
       div.classList.add("div")
       div.id = "mainspacediv-" + n
       document.getElementById("mainspace").appendChild(div)
 
+
+
       textarea.addEventListener("keypress", (e) => {
-        if (e.key == "=") {
-          set(ref(db, "/WorkSpace/pasteshield/" + n), {
+        if (e.key == "=" && !ab.includes("ron")) {
+          update(ref(db, "/WorkSpace/pasteshield/" + n), {
             "td" : textarea.value,
-            "ts" : 20,
+            "ts" : 15,
             "aw" : textarea.style.width.replace("px", ""),
             "ah" : textarea.style.height.replace("px", ""),
             "dp" : div.style.position,
@@ -271,10 +341,15 @@
         }
       })
 
+      for (let i=0; i < document.getElementById("mainspace").children.length; i++) {
+        document.getElementById("mainspace").children[i].style.zIndex = "0"
+      }
+      div.style.zIndex = 1
+
       let ismousedown = false
       let constnumX = 0
       let constnumY = 0
-
+      
       div.addEventListener("mousedown", () => {
         if (div.style.zIndex != 1) {
           for (let i=0; i < document.getElementById("mainspace").children.length; i++) {
@@ -284,12 +359,14 @@
 
         }
       })
-      grab.addEventListener("mousedown" , (e) => {
+
+      grab.addEventListener("mousedown", (e) => {
         ismousedown = true
         constnumX = e.clientX - div.offsetLeft
         constnumY = e.clientY - div.offsetTop
 
       })
+
       document.addEventListener("mousemove", (e) => {
         if (ismousedown) {
           if (div.style.position != "absolute") {
@@ -299,32 +376,91 @@
           div.style.top = e.clientY - constnumY + "px"
         }
       })
-      document.addEventListener("mouseup" , () => {
+
+      document.addEventListener("mouseup", (e) => {
         ismousedown = false
         constnumX = 0
         constnumY = 0
+
+
+
       
       })
 
-      del.onclick = () => {
-        remove(ref(db, "/WorkSpace/pasteshield/" + n))
 
-        if (canremovelocally) {
-          document.getElementById("mainspacediv-" + n).style.animation = "fadeout 0.1s ease-out"
-          setTimeout(() => {
-            document.getElementById("mainspace").removeChild(div)
-          }, 100)
+
+      del.onclick = () => {
+        // remove(ref(db, "/WorkSpace/pasteshield/" + n))
+
+        if (gotShields.includes(n)) {
+          update(ref(db, "/WorkSpace/pasteshield/" + n), {
+            "ab": "deleted",
+          })
         }
+        document.getElementById("mainspacediv-" + n).style.transition = "0"
+        document.getElementById("mainspacediv-" + n).style.animation = "fadeout 0.1s ease-out"
+        setTimeout(() => {
+          document.getElementById("mainspace").removeChild(div)
+        }, 100)
 
       }
 
-      if (ab == "nod") {
+      if (ab.includes("nod")) {
         actiondiv.removeChild(del)
       }
 
 
+      var expandcollapsing = true
+      expandcollapse.addEventListener("click", () => {
+        if (expandcollapsing) {
+          textarea.classList.toggle("collapsed")
+          expandcollapse.style.setProperty("margin", "3px auto auto auto")
+          expandcollapse.style.removeProperty("background-color")
+          actiondiv.style.setProperty("width", "fit-content")
+          actiondiv.style.setProperty("flex-direction", "unset")
+          expandcollapse.innerHTML = "keyboard_arrow_down"
+          div.style.setProperty("border", "1px solid #767676")
+          localStorage[n + " expandcollapse"] = "collapsed"
+          expandcollapsing = false
+
+        } else {
+          textarea.classList.toggle("collapsed")
+          textarea.style.setProperty.animation = "opacityin 0.2s ease-out"
+          expandcollapse.style.setProperty("margin", "auto auto 2.5px auto")
+          localStorage.removeItem(n + " expandcollapse")
+          textarea.style.setProperty("display", "unset")
+          expandcollapse.innerHTML = "keyboard_arrow_up"
+          actiondiv.style.setProperty("width", "30px")
+          actiondiv.style.setProperty("flex-direction", "column")
+          div.style.setProperty("border", "0")
+          expandcollapsing = true
+        }
+      })
+      if (localStorage[div.id.replace("mainspacediv-", "") + " expandcollapse"]) {
+        expandcollapse.click()
+      }
+
+      if (!expandcollapsing && localStorage[div.id.replace("mainspacediv-", "") + " divleft"] && localStorage[div.id.replace("mainspacediv-", "") + " divtop"]) {
+        div.style.left = localStorage[div.id.replace("mainspacediv-", "") + " divleft"]
+        div.style.top = localStorage[div.id.replace("mainspacediv-", "") + " divtop"]
+      } else {
+        div.style.left = divleft + "px"
+        div.style.top = divtop + "px"
+      }
 
     }
+
+    $(document).mouseup(function(event) {
+      let main
+      try {
+        main = (event.target).parentElement.parentElement.parentElement.getAttribute("id")
+        localStorage[main.replace("mainspacediv-", "") + " divleft"] = document.getElementById(main).style.left
+        localStorage[main.replace("mainspacediv-", "") + " divtop"] = document.getElementById(main).style.top
+      } catch {
+        return
+      }
+
+    })
 
   </script>
   <script>
