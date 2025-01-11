@@ -27,6 +27,7 @@
   </span>
   <div class="mainspace" id="mainspace">
     <div style="width: 100%; height: 60px; margin: 0 auto;"></div>
+    <h1 id="nothingtoshow" style="margin-top: -60px; transform-origin: top;">Nothing To Show</h1>
   </div>
 
   <style>
@@ -140,7 +141,7 @@
     }
 
     body .mainspace .div .padder textarea {
-      transition: opacity 0.2s ease-out, border 0.2s ease-out, padding 0.2s ease-out;
+      transition: opacity 0.2s ease-out, border 0.2s ease-out, padding 0.2s ease-out, width 0.1s ease-out, height 0.1s ease-out;
       margin: 0 auto;
       min-width: 100px;
       min-height: 100px;
@@ -161,7 +162,8 @@
       scrollbar-color: white transparent;
     }
     body .mainspace .div .padder textarea.collapsed {
-      transition: opacity 0s, border 0.2s ease-out, padding 0.2s ease-out;
+      transition: opacity 0s, border 0.2s ease-out, padding 0.2s ease-out, width 0.1s ease-out, height 0.1s ease-out;
+
       min-width: 0;
       min-height: 0;
       max-height: 0;
@@ -203,6 +205,12 @@
       background-color: unset;
       display: flex;
       /* pointer-events: none; */
+    }
+    body .mainspace .div .makebigger {
+      width: 100%;
+      height: 100%;
+      padding: 200px;
+      pointer-events: none;
     }
 
     body .mainspace .div .padder .actiondiv .grab {
@@ -264,6 +272,9 @@
     let gotShields = []
     onChildAdded(dbRef, (snapshot) => {
       if (!document.getElementById("mainspacediv-" + snapshot.key)) {
+        if (document.getElementById("nothingtoshow")) {
+            document.getElementById("nothingtoshow").parentNode.removeChild(document.getElementById("nothingtoshow"))
+        }
         if (snapshot.val().ab) {
           if (!snapshot.val().ab.includes("deleted")) {
             addElement(snapshot.val().td, snapshot.val().ts, snapshot.val().aw, snapshot.val().ah, snapshot.val().dp, snapshot.val().dl, snapshot.val().dt, snapshot.val().ab, snapshot.key)
@@ -296,7 +307,10 @@
       let div = document.createElement("div")
       let padder = document.createElement("div")
       padder.classList.add("padder")
+      let makebigger = document.createElement("div")
+      makebigger.classList.add("makebigger")
       let textarea = document.createElement("textarea")
+      textarea.name = "textarea-" + n
       textarea.value = textdata
       textarea.style.fontSize = textsize + "px"
       textarea.style.width = areawidth + "px"
@@ -397,11 +411,10 @@
             "ab": "deleted",
           })
         }
-        document.getElementById("mainspacediv-" + n).style.transition = "0"
-        document.getElementById("mainspacediv-" + n).style.animation = "fadeout 0.1s ease-out"
+        div.style.setProperty("animation", "fadeout 0.1s ease-out")
         setTimeout(() => {
           document.getElementById("mainspace").removeChild(div)
-        }, 100)
+        }, 90)
 
       }
 
