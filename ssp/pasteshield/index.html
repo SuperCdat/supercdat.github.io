@@ -132,16 +132,18 @@
       /* padding: 0 50px 0 0; */
       /* transform: translate(-100%, -100%); */
       border-radius: 10px;
+      transition: background-color 0.2s ease-out;
 
     }
     body.dark .mainspace .div {
       /* background-color: rgba(138, 180, 248, 1); */
       /* background-color: rgba(0, 0, 0, 1); */
       background-color: #0F0F0F;
+      transition: background-color 0.2s ease-out;
     }
 
     body .mainspace .div .padder textarea {
-      transition: opacity 0.2s ease-out, border 0.2s ease-out, padding 0.2s ease-out, width 0.1s ease-out, height 0.1s ease-out;
+      transition: opacity 0.2s ease-out, border 0.2s ease-out, padding 0.2s ease-out, background-color 0.2s ease-out;
       margin: 0 auto;
       min-width: 100px;
       min-height: 100px;
@@ -155,14 +157,16 @@
       scrollbar-width: thin;
       font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
       scrollbar-color: black transparent;
+      border: #e8eaed 1px solid;
     }
     body.dark .mainspace .div .padder textarea {
       background-color: #080a0e;
       color: white;
       scrollbar-color: white transparent;
+      border: #767676 1px solid;
     }
     body .mainspace .div .padder textarea.collapsed {
-      transition: opacity 0s, border 0.2s ease-out, padding 0.2s ease-out, width 0.1s ease-out, height 0.1s ease-out;
+      transition: opacity 0s, border 0.2s ease-out, padding 0.2s ease-out, background-color 0.2s ease-out;
 
       min-width: 0;
       min-height: 0;
@@ -192,7 +196,8 @@
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       background-color: unset;
-
+      font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+      transition: color 0.2s ease-out;
 
     }
     /* body.dark .mainspace .div .actiondiv {
@@ -229,6 +234,22 @@
       text-align: center;
       user-select: none;
       background-color: unset;
+      padding-bottom: 4px;
+    }
+
+    body .mainspace .div .padder .actiondiv .save {
+      width: 30px;
+      height: fit-content;
+      margin: 0 auto;
+      text-align: center;
+      user-select: none;
+      background-color: unset;
+      padding: 3px 0 0 0;
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 250,
+      'GRAD' 0,
+      'opsz' 24
     }
 
     body .mainspace .div .padder .actiondiv .expandcollapse {
@@ -323,9 +344,17 @@
       grab.innerHTML = "&#9776;"
       actiondiv.appendChild(grab)
       let del = document.createElement("p")
-      del.classList.add("del")
-      del.innerHTML = "&#128465;"
-      actiondiv.appendChild(del)
+      if (!ab.includes("nod")) {
+        del.classList.add("del")
+        del.innerHTML = "&#128465;"
+        actiondiv.appendChild(del)
+      }
+      let save = document.createElement("span")
+      if (!ab.includes("ron")) {
+        save.classList.add("save", "material-symbols-outlined")
+        save.innerHTML = "save"
+        actiondiv.appendChild(save)
+      }
       let expandcollapse = document.createElement("span")
       expandcollapse.classList.add("expandcollapse")
       expandcollapse.classList.add("material-symbols-outlined")
@@ -340,19 +369,26 @@
       document.getElementById("mainspace").appendChild(div)
 
 
+      function saving() {
+        update(ref(db, "/WorkSpace/pasteshield/" + n), {
+          "td" : textarea.value,
+          "ts" : 15,
+          "aw" : textarea.style.width.replace("px", ""),
+          "ah" : textarea.style.height.replace("px", ""),
+          "dp" : div.style.position,
+          "dl" : div.style.left.replace("px", ""),
+          "dt" : div.style.top.replace("px", ""),
+          "time": new Date().toLocaleString(),
+        })
+      }
 
       textarea.addEventListener("keypress", (e) => {
         if (e.key == "=" && !ab.includes("ron")) {
-          update(ref(db, "/WorkSpace/pasteshield/" + n), {
-            "td" : textarea.value,
-            "ts" : 15,
-            "aw" : textarea.style.width.replace("px", ""),
-            "ah" : textarea.style.height.replace("px", ""),
-            "dp" : div.style.position,
-            "dl" : div.style.left.replace("px", ""),
-            "dt" : div.style.top.replace("px", ""),
-          })
+          saving()
         }
+      })
+      save.addEventListener("click", () => {
+        saving()
       })
 
       for (let i=0; i < document.getElementById("mainspace").children.length; i++) {
@@ -375,6 +411,9 @@
       })
 
       grab.addEventListener("mousedown", (e) => {
+        if (e.button == 2) {
+          return
+        }
         ismousedown = true
         constnumX = e.clientX - div.offsetLeft
         constnumY = e.clientY - div.offsetTop
@@ -416,10 +455,6 @@
           document.getElementById("mainspace").removeChild(div)
         }, 90)
 
-      }
-
-      if (ab.includes("nod")) {
-        actiondiv.removeChild(del)
       }
 
 
@@ -477,6 +512,7 @@
 
   </script>
   <script>
+
 
     if (localStorage.togglebg && localStorage.togglebg == "enabled") {
       togglebgf()
@@ -545,6 +581,15 @@
         localStorage.dark = "enabled"
       }
     }
+
+    function autochangebg() {
+      setTimeout(() => {
+        if (localStorage.togglebg == "enabled") {
+          togglebgf()
+        }
+      }, 60000)
+    }
+    autochangebg()
 
   </script>
 </body>
